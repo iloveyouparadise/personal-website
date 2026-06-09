@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>唐烨 | Personal Resume</title>
+    <meta
+      name="description"
+      content="唐烨的个人简历网站，聚焦视频剪辑、新媒体运营与作品集展示。"
+    />
+    <link rel="icon" type="image/png" href="./tytestlogo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <!-- 加载界面 -->
+    <div id="loader" class="loader">
+      <div class="loader-inner">
+        <img class="loader-logo" src="./tytestlogo.png" alt="TY" />
+        <div class="loader-bar-track">
+          <div id="loader-bar" class="loader-bar-fill"></div>
+        </div>
+        <div id="loader-percent" class="loader-percent">LOADING... 0%</div>
+      </div>
+    </div>
+
+    <a class="hero-logo" href="#about" aria-label="唐烨首页">
+      <img src="./tytestlogo.png" alt="TY" />
+    </a>
+    <div class="page-shell">
+      <header class="hero-shell" id="about">
+        <section class="hero" aria-label="唐烨个人作品集首屏">
+
+          <!-- Video background，铺满容器 -->
+          <div class="hero-frame" aria-hidden="true">
+            <img
+              class="hero-frame-bg"
+              src="./作品集混剪v0.1-soConvert.webp"
+              alt=""
+            />
+          </div>
+
+          <!-- 横屏遮罩 -->
+          <svg class="hero-mask hero-mask--desktop" viewBox="0 0 1861.64 1022.24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" fill="#ede8df" d="M0,0 H1861.64 V1022.24 H0 Z M0.5,1021.74 L1496.44,1021.74 L1533.42,944.46 L1861.14,944.46 L1861.14,0.5 L217.61,0.5 L191.65,53.6 L0.5,56.42 Z"/>
+            <polygon points="0.5,1021.74 0.5,56.42 191.65,53.6 217.61,0.5 1861.14,0.5 1861.14,944.46 1533.42,944.46 1496.44,1021.74" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+            <polygon points="1506.06,1021.74 1538.78,954.04 1861.14,954.32 1861.14,1021.74" fill="#fda682" stroke="#1a1a1a" stroke-width="1.5"/>
+            <foreignObject x="1585.5" y="962.91" width="223.67" height="52.64">
+              <a xmlns="http://www.w3.org/1999/xhtml" href="#projects"
+                 onmouseenter="var n=this.querySelector('.btn-icon-normal'),h=this.querySelector('.btn-icon-hover'),t=this.querySelector('.btn-text');n.style.display='none';h.style.display='block';n.style.transform='scale(0.75)';h.style.transform='scale(0.75)';t.style.transform='translateX(6px)';"
+                 onmouseleave="var n=this.querySelector('.btn-icon-normal'),h=this.querySelector('.btn-icon-hover'),t=this.querySelector('.btn-text');n.style.display='block';h.style.display='none';n.style.transform='scale(1)';h.style.transform='scale(1)';t.style.transform='translateX(0)';"
+                 style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:100%;font-family:'SourceHanSansSC-Heavy',sans-serif;font-size:32px;line-height:1;padding:0;margin:0;box-sizing:border-box;color:#000;text-decoration:none;cursor:pointer;white-space:nowrap;">
+                <img class="btn-icon-normal" src="./icons/arrow-down.svg" style="width:32px;height:32px;display:block;position:relative;top:2px;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);" />
+                <img class="btn-icon-hover" src="./icons/arrow-down (1).svg" style="width:32px;height:32px;display:none;position:relative;top:2px;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);" />
+                <span class="btn-text" style="display:inline-block;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);">查看作品集</span>
+              </a>
+            </foreignObject>
+          </svg>
+
+          <!-- 竖屏遮罩 -->
+          <svg class="hero-mask hero-mask--mobile" viewBox="0 0 360.15 805.98" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" fill="#ede8df" d="M0,0 H360.15 V805.98 H0 Z M0.5,805.48 L158.56,805.48 L178.28,757.04 L359.65,754.84 L359.65,0.5 L83.32,0.5 L72.24,41.41 L0.5,42.36 Z"/>
+            <polygon points="0.5,805.48 0.5,42.36 72.24,41.41 83.32,0.5 359.65,0.5 359.65,754.84 178.28,757.04 158.56,805.48" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+            <polygon points="182.28,762.28 359.65,760.34 359.65,803.67 164.85,805.46" fill="#fda682" stroke="#1a1a1a" stroke-width="1.5"/>
+            <foreignObject x="196.94" y="769.74" width="149.38" height="26.32">
+              <a xmlns="http://www.w3.org/1999/xhtml" href="#projects"
+                 onmouseenter="var n=this.querySelector('.btn-icon-normal'),h=this.querySelector('.btn-icon-hover'),t=this.querySelector('.btn-text');n.style.display='none';h.style.display='block';n.style.transform='scale(0.75)';h.style.transform='scale(0.75)';t.style.transform='translateX(5px)';"
+                 onmouseleave="var n=this.querySelector('.btn-icon-normal'),h=this.querySelector('.btn-icon-hover'),t=this.querySelector('.btn-text');n.style.display='block';h.style.display='none';n.style.transform='scale(1)';h.style.transform='scale(1)';t.style.transform='translateX(0)';"
+                 style="display:flex;align-items:center;justify-content:center;gap:4px;width:100%;height:100%;font-family:'SourceHanSansSC-Heavy',sans-serif;font-size:17px;line-height:1;padding:0;margin:0;box-sizing:border-box;color:#000;text-decoration:none;cursor:pointer;white-space:nowrap;">
+                <img class="btn-icon-normal" src="./icons/arrow-down.svg" style="width:17px;height:17px;display:block;position:relative;top:1px;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);" />
+                <img class="btn-icon-hover" src="./icons/arrow-down (1).svg" style="width:17px;height:17px;display:none;position:relative;top:1px;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);" />
+                <span class="btn-text" style="display:inline-block;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);">查看作品集</span>
+              </a>
+            </foreignObject>
+          </svg>
+
+          <div class="hero-content">
+            <nav class="topbar reveal" aria-label="主要导航">
+              <div class="topbar-spacer" aria-hidden="true"></div>
+              <ul class="nav-links">
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#experience">实习经历</a></li>
+                <li><a href="#projects">作品集</a></li>
+              </ul>
+              <a class="demo-button" href="#contact" aria-label="联系唐烨">
+                <span class="button-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7 17L17 7" />
+                    <path d="M8 7h9v9" />
+                  </svg>
+                </span>
+                <span>联系我</span>
+              </a>
+            </nav>
+
+            <div class="hero-text reveal">
+              <h1>无限进步</h1>
+            </div>
+
+          </div>
+
+        </section>
+      </header>
+
+      <main>
+        <section class="section" id="experience">
+          <div class="exp-heading">
+            <span class="exp-heading-en">EXPERIENCE</span>
+            <span class="exp-heading-cn">实习经历</span>
+          </div>
+
+          <div class="exp-list">
+
+            <div class="exp-item">
+              <div class="exp-meta">
+<span class="exp-date">2026.03 - 2026.06</span>
+              </div>
+              <h3 class="exp-title">蔚来 NIO / 视频拍摄剪辑</h3>
+              <p class="exp-body">独立完成短视频全流程制作（Sony A7M4 + DJI RS3 拍摄，Premiere Pro / 剪映专业版后期），内容类型涵盖车型静态、口播、剧情及活动纪实，适配抖音、小红书等多平台发布格式，具备品牌内容输出规范意识。参与三次新车发布会及多次新车新色到店拍摄，负责全程机位架设、跟拍执行与后期成片；参与交付里程碑活动纪实拍摄，完成高光集锦剪辑，掌握活动类内容的素材筛选与叙事节奏把控。</p>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-meta">
+                <span class="exp-date">2025.11 - 2026.01</span>
+              </div>
+              <h3 class="exp-title">江苏拾光宝盒信息技术有限公司 / 视频剪辑（B 站）</h3>
+              <p class="exp-body">参与千问、夸克、安克等品牌 B 站 KOC 种草视频后期，优化节奏与视觉呈现，单条最高播放量 2W；同时深度使用 AIGC 工具提升视觉表达，并搭建音乐特效素材库与 AI 提示词体系。</p>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-meta">
+                <span class="exp-date">2025.07 - 2025.09</span>
+              </div>
+              <h3 class="exp-title">南京行者无疆科技有限公司 / 短视频运营</h3>
+              <p class="exp-body">从 0 到 1 打造并运营公司官方抖音账号，围绕萌宠 IP 完成素材收录、内容策划、视频制作与账号运营全流程；同时参与宠物 AI 智能硬件项目内容创作，熟练使用 Veo、Nano Banana、Runaway 等 AI 工具辅助视频输出。</p>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-meta">
+                <span class="exp-date">2025.05 - 2025.07</span>
+              </div>
+              <h3 class="exp-title">沃尔斯文化传播有限公司 / 新媒体运营</h3>
+              <p class="exp-body">统筹抖音、小红书双平台运营，完成探店内容与短视频 10 条、小红书笔记 20+ 篇，单篇最高收藏 100+，带动账号累计涨粉 210+，提升品牌线上内容影响力与本土曝光。</p>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-meta">
+                <span class="exp-date">2024.09 - 2024.11</span>
+              </div>
+              <h3 class="exp-title">扬子晚报 / 团队主创</h3>
+              <p class="exp-body">参与拍摄并独立剪辑 10 条用于雨花台景区多平台发布的宣传视频，单条最高播放量 10W+，总播放量达到 60W+，积累了文旅宣传内容的拍摄与剪辑经验。</p>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-meta">
+                <span class="exp-date">2024.07 - 2024.08</span>
+              </div>
+              <h3 class="exp-title">江苏在学信息科技有限公司 / 小红书内容运营</h3>
+              <p class="exp-body">独立统筹集团小红书官号 20 余期视频内容的策划、剪辑与上线全流程，单条最高获赞 100+，助力账号涨粉 200+，有效提升品牌在年轻群体中的曝光度。</p>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="section metrics-section">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Highlights</p>
+            <h2 class="title-reveal"><span class="title-reveal-text">一些关键数据</span></h2>
+          </div>
+          <div class="metrics-grid reveal">
+            <article class="metric-card metric-reveal">
+              <span><span class="metric-reveal-text">实习经历</span></span>
+              <strong><span class="metric-reveal-text">6</span></strong>
+            </article>
+            <article class="metric-card metric-reveal">
+              <span><span class="metric-reveal-text">全网原创视频</span></span>
+              <strong><span class="metric-reveal-text">30+</span></strong>
+            </article>
+            <article class="metric-card metric-reveal">
+              <span><span class="metric-reveal-text">累计获赞</span></span>
+              <strong><span class="metric-reveal-text">6000+</span></strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="section projects-section" id="projects">
+          <div class="portfolio-heading reveal">
+            <span class="portfolio-heading-en">PORTFOLIO</span>
+            <span class="portfolio-heading-cn title-reveal"><span class="title-reveal-text">作品集</span></span>
+          </div>
+
+          <div class="portfolio-toolbar reveal">
+            <button class="portfolio-filter is-active" type="button" data-filter="school">
+              学校作品
+            </button>
+            <button class="portfolio-filter" type="button" data-filter="internship">
+              实习作品
+            </button>
+          </div>
+
+          <div class="portfolio-panel is-active" data-panel="school">
+            <div class="portfolio-carousel-container reveal">
+              <button class="portfolio-scroll-button prev" type="button" aria-label="上一个">‹</button>
+              <div class="portfolio-carousel-wrapper">
+                <div class="portfolio-strip-grid">
+              <button class="portfolio-strip" type="button" data-detail-target="school-01">
+                <span class="portfolio-strip-media cover-school-01"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>毕业设计</strong>
+                  <span>点击查看完整说明</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">01</span>
+                  <strong>毕业设计</strong>
+                  <span>视觉叙事 / 待补充</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="school-02">
+                <span class="portfolio-strip-media cover-school-02"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>广告 / MV</strong>
+                  <span>点击查看完整说明</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">02</span>
+                  <strong>广告 / MV / 微电影</strong>
+                  <span>拍摄 / 剪辑 / 全流程制作</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="school-03">
+                <span class="portfolio-strip-media cover-school-03"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>账号分析</strong>
+                  <span>点击查看完整说明</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">03</span>
+                  <strong>新媒体账号分析</strong>
+                  <span>研究 / 内容分析 / 可视化</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="school-04">
+                <span class="portfolio-strip-media cover-school-04"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>课程协作项目</strong>
+                  <span>点击查看完整说明</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">04</span>
+                  <strong>课程协作项目</strong>
+                  <span>协作 / 统筹 / 呈现</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="school-05">
+                <span class="portfolio-strip-media cover-school-05"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>研究型项目</strong>
+                  <span>点击查看完整说明</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">05</span>
+                  <strong>研究型课程作品</strong>
+                  <span>研究 / 分析 / 策略</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="school-06">
+                <span class="portfolio-strip-media cover-school-06"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>个人表达作品</strong>
+                  <span>点击查看完整说明</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">06</span>
+                  <strong>个人表达作品</strong>
+                  <span>表达 / 细节 / 质感</span>
+                </span>
+              </button>
+                </div>
+              </div>
+              <button class="portfolio-scroll-button next" type="button" aria-label="下一个">›</button>
+            </div>
+
+            <div class="portfolio-detail reveal" id="school-01">
+              <div class="portfolio-detail-player cover-school-01">
+                <div class="portfolio-detail-player-inner">视频播放区域</div>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">01</span>
+                  <div>
+                    <h3>毕业设计</h3>
+                    <p>建议放你最完整的一项学校作品，作为作品集的首页项目。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时间</strong> 请补充</p>
+                  <p><strong>参与部分</strong> 视觉概念、内容策划、拍摄或剪辑流程</p>
+                  <p><strong>项目介绍</strong> 这里可以写背景、目标、最终呈现方式和你最想强调的亮点。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="school-02">
+              <div class="portfolio-detail-player cover-school-02">
+                <div class="portfolio-detail-player-inner">视频播放区域</div>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">02</span>
+                  <div>
+                    <h3>广告 / MV / 微电影</h3>
+                    <p>适合整理成一张代表你视频全流程制作能力的案例卡。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时间</strong> 请补充</p>
+                  <p><strong>参与部分</strong> 拍摄、分镜、剪辑、节奏设计</p>
+                  <p><strong>项目介绍</strong> 写清项目类型、合作方式、风格方向，以及你负责的核心环节。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="school-03">
+              <div class="portfolio-detail-player cover-school-03">
+                <div class="portfolio-detail-player-inner">视频播放区域</div>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">03</span>
+                  <div>
+                    <h3>新媒体账号分析</h3>
+                    <p>适合展示你做内容研究、账号拆解和可视化表达的能力。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时间</strong> 请补充</p>
+                  <p><strong>参与部分</strong> 调研、结构梳理、结论输出</p>
+                  <p><strong>项目介绍</strong> 补充研究对象、分析维度、最后得出的策略结论。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="school-04">
+              <div class="portfolio-detail-player cover-school-04">
+                <div class="portfolio-detail-player-inner">视频播放区域</div>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">04</span>
+                  <div>
+                    <h3>课程协作项目</h3>
+                    <p>适合用来说明你在团队合作里的职责和统筹能力。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时间</strong> 请补充</p>
+                  <p><strong>参与部分</strong> 协作推进、物料整理、呈现把控</p>
+                  <p><strong>项目介绍</strong> 强调你在团队中的具体贡献，而不是只写项目结果。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="school-05">
+              <div class="portfolio-detail-player cover-school-05">
+                <div class="portfolio-detail-player-inner">视频播放区域</div>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">05</span>
+                  <div>
+                    <h3>研究型课程作品</h3>
+                    <p>适合强调方法、调研和系统性思考。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时间</strong> 请补充</p>
+                  <p><strong>参与部分</strong> 研究、分析、方案推导</p>
+                  <p><strong>项目介绍</strong> 写清问题、方法、结论，以及最后如何转化成具体方案。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="school-06">
+              <div class="portfolio-detail-player cover-school-06">
+                <div class="portfolio-detail-player-inner">视频播放区域</div>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">06</span>
+                  <div>
+                    <h3>个人表达作品</h3>
+                    <p>适合作为这个分类里的收束项目，突出你的个人语言。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时间</strong> 请补充</p>
+                  <p><strong>参与部分</strong> 概念、镜头、后期质感设计</p>
+                  <p><strong>项目介绍</strong> 这里可以写你最喜欢这个作品的原因，以及希望观众看到什么。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-panel" data-panel="internship" hidden>
+            <div class="portfolio-carousel-container reveal">
+              <button class="portfolio-scroll-button prev" type="button" aria-label="上一个">‹</button>
+              <div class="portfolio-carousel-wrapper">
+                <div class="portfolio-strip-grid">
+              <button class="portfolio-strip" type="button" data-detail-target="internship-01">
+                <span class="portfolio-strip-media cover-internship-01"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>宠物接驳车视频</strong>
+                  <span>点击查看</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">01</span>
+                  <strong>「蔚来」萤光来护驾 一日店长上班记</strong>
+                  <span>拍摄使用firefly萤火虫接上猫猫店长，送到领养日活动现场</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="internship-02">
+                <span class="portfolio-strip-media cover-internship-02"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>萤火虫汽车猫咪彩蛋展示</strong>
+                  <span>点击查看</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">02</span>
+                  <strong>江苏拾光宝盒</strong>
+                  <span>B 站 / 剪辑 / KOC 内容</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="internship-03">
+                <span class="portfolio-strip-media cover-internship-03"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>「蔚来」ET-9新车色到店视频</strong>
+                  <span>点击查看</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">03</span>
+                  <strong>南京行者无疆</strong>
+                  <span>抖音 / 孵化 / 内容运营</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="internship-04">
+                <span class="portfolio-strip-media cover-internship-04"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>「蔚来」2026款ET6ES6上市到店宣传视频</strong>
+                  <span>点击查看</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">04</span>
+                  <strong>沃尔斯文化传播</strong>
+                  <span>抖音 / 小红书运营</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="internship-05">
+                <span class="portfolio-strip-media cover-internship-05"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>「萤火虫」“循迹倒车”功能情景剧展示</strong>
+                  <span>点击查看</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">05</span>
+                  <strong>扬子晚报</strong>
+                  <span>宣传片 / 拍摄 / 剪辑</span>
+                </span>
+              </button>
+
+              <button class="portfolio-strip" type="button" data-detail-target="internship-06">
+                <span class="portfolio-strip-media cover-internship-06"></span>
+                <span class="portfolio-strip-hover">
+                  <strong>蔚来旗下品牌「乐道」新车型L80到店宣传视频</strong>
+                  <span>点击查看</span>
+                </span>
+                <span class="portfolio-strip-meta">
+                  <span class="project-index">06</span>
+                  <strong>江苏在学信息科技</strong>
+                  <span>小红书 / 策划 / 剪辑</span>
+                </span>
+              </button>
+                </div>
+              </div>
+              <button class="portfolio-scroll-button next" type="button" aria-label="下一个">›</button>
+            </div>
+
+            <div class="portfolio-detail reveal" id="internship-01">
+              <div class="portfolio-detail-player cover-internship-01 is-portrait-video">
+                <video class="portfolio-detail-video" controls preload="metadata" playsinline>
+                  <source src="./vedio/宠物救助_3剪.mp4" type="video/mp4" />
+                </video>
+                <button class="portfolio-video-play-button" type="button" aria-label="播放视频">
+                  <span class="portfolio-video-play-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">01</span>
+                  <div>
+                    <h3>【蔚来】萤光来护驾 一日店长上班记</h3>
+                    <p>拍摄使用firefly萤火虫接上猫猫店长，送到领养日活动现场。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时长</strong>  02:30</p>
+                  <p><strong>参与部分</strong> 负责视频的拍摄和剪辑</p>
+                  <p><strong>项目介绍</strong> 快闪竖屏短视频，firefly萤火虫杭州官方将携手杭州领养日，在猫猫躺（自在）生活节举办之时拍摄一条官方小视频，一方面是传递firefly萤火虫宠物友好等功能，一方面意在为后续用户志愿者招募提供前宣素材，进行打样</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="internship-02">
+              <div class="portfolio-detail-player cover-internship-02 is-portrait-video">
+                <video class="portfolio-detail-video" controls preload="metadata" playsinline>
+                  <source src="./vedio/318小猫视频-7剪.mp4" type="video/mp4" />
+                </video>
+                <button class="portfolio-video-play-button" type="button" aria-label="播放视频">
+                  <span class="portfolio-video-play-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">02</span>
+                  <div>
+                    <h3>蔚来旗下品牌「萤火虫」车机系统宣传项目</h3>
+                    <p>负责通过节奏与视觉包装（AE）优化强化传播效果。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时长</strong>  00:37</p>
+                  <p><strong>参与部分</strong> 拍摄、剪辑（包含视频包装）</p>
+                  <p><strong>项目介绍</strong> 乐队氛围环作为萤火虫车机里的一个特色小功能，本来就与猫咪密不可分，同可爱猫咪一起宣传这一功能。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="internship-03">
+              <div class="portfolio-detail-player cover-internship-03">
+                <video class="portfolio-detail-video" controls preload="metadata" playsinline>
+                  <source src="./vedio/3.26ET9-1剪.mp4" type="video/mp4" />
+                </video>
+                <button class="portfolio-video-play-button" type="button" aria-label="播放视频">
+                  <span class="portfolio-video-play-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">03</span>
+                  <div>
+                    <h3>「蔚来」ET-9新车色到店宣传视频</h3>
+                    <p>分店外拍，在汽车展台内拍摄新车色。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时长</strong>  01:21</p>
+                  <p><strong>参与部分</strong> 拍摄、剪辑</p>
+                  <p><strong>项目介绍</strong> 围绕新车色的特点，以流畅的节奏输出新车色的细节和大体展示。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="internship-04">
+              <div class="portfolio-detail-player cover-internship-04 is-portrait-video">
+                <video class="portfolio-detail-video" controls preload="metadata" playsinline>
+                  <source src="./vedio/4.2新款ET6ES6上市-1剪.mp4" type="video/mp4" />
+                </video>
+                <button class="portfolio-video-play-button" type="button" aria-label="播放视频">
+                  <span class="portfolio-video-play-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">04</span>
+                  <div>
+                    <h3>「蔚来」新款ET6ES6上市宣传视频</h3>
+                    <p>尝试一镜到底和3d摄像头跟踪手法。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时长</strong>   01:39</p>
+                  <p><strong>参与部分</strong> 拍摄、剪辑</p>
+                  <p><strong>项目介绍</strong> 利用一镜到底的运镜来流畅的展示新车型的卖点，并辅助在后期使用AE进行3D摄像头跟踪。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="internship-05">
+              <div class="portfolio-detail-player cover-internship-05 is-portrait-video">
+                <video class="portfolio-detail-video" controls preload="metadata" playsinline>
+                  <source src="./vedio/循迹倒车-v7.mp4" type="video/mp4" />
+                </video>
+                <button class="portfolio-video-play-button" type="button" aria-label="播放视频">
+                  <span class="portfolio-video-play-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">05</span>
+                  <div>
+                    <h3>蔚来旗下品牌「萤火虫」“循迹倒车”功能情景剧展示</h3>
+                    <p>通过情景剧的视频类型来演绎，输出卖点。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时长</strong> 01:07</p>
+                  <p><strong>参与部分</strong> 拍摄、剪辑</p>
+                  <p><strong>项目介绍</strong> 外出取景，并配合演员的来协调拍摄，辅助以AE包装的形式，以较为舒服的节奏输出卖点。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-detail" id="internship-06">
+              <div class="portfolio-detail-player cover-internship-06">
+                <video class="portfolio-detail-video" controls preload="metadata" playsinline>
+                  <source src="./vedio/L80到店视频-v4.mp4" type="video/mp4" />
+                </video>
+                <button class="portfolio-video-play-button" type="button" aria-label="播放视频">
+                  <span class="portfolio-video-play-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-head">
+                  <span class="project-index">06</span>
+                  <div>
+                    <h3>蔚来旗下品牌「乐道」新车型L80到店宣传视频</h3>
+                    <p>根据必提卖点，独立完成整个视频的拍摄剪辑。</p>
+                  </div>
+                  <button class="portfolio-detail-close" type="button">返回</button>
+                </div>
+                <div class="portfolio-detail-info">
+                  <p><strong>时长</strong>  00:47</p>
+                  <p><strong>参与部分</strong> 拍摄、剪辑</p>
+                  <p><strong>项目介绍</strong> 外出到店拍摄，根据必提卖点独立完成整个视频的拍摄，并优化节奏展示新车型。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section design-works-section">
+          <div class="portfolio-heading reveal">
+            <span class="portfolio-heading-en">DESIGN WORKS</span>
+            <span class="portfolio-heading-cn title-reveal"><span class="title-reveal-text">设计作品</span></span>
+          </div>
+          <div class="design-carousel-container reveal">
+            <div class="design-carousel-wrapper">
+              <div class="design-strip-grid">
+                <div class="design-item">
+                  <img src="./myimg/20260418-142839.png" alt="设计作品 1">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/20260418-142843.png" alt="设计作品 2">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/她上海之旅节目封面.png" alt="她上海之旅节目封面">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/成龙电影下海报 1.png" alt="成龙电影下海报 1">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/新奥尔良节目封面.png" alt="新奥尔良节目封面">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/日本是枝裕和宣传海报.png" alt="日本是枝裕和宣传海报">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/洛杉矶1.png" alt="洛杉矶1">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/洛杉矶2.png" alt="洛杉矶2">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/洛杉矶3（音乐推荐）.png" alt="洛杉矶3（音乐推荐）">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/绿皮书宣传海报.png" alt="绿皮书宣传海报">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/香港海报 2.png" alt="香港海报 2">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/香港海报 3.png" alt="香港海报 3">
+                </div>
+                <div class="design-item">
+                  <img src="./myimg/香港海报.png" alt="香港海报">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section stack-section">
+          <div class="section-heading reveal">
+            <h2 class="title-reveal"><span class="title-reveal-text">能力标签</span></h2>
+          </div>
+          <div class="tag-cloud reveal">
+            <div class="tag-track">
+              <span>剪辑</span>
+              <span>拍摄</span>
+              <span>Bilibili</span>
+              <span>抖音</span>
+              <span>小红书</span>
+              <span>AIGC工作流</span>
+              <span>PS</span>
+              <span>PR</span>
+              <span>AU</span>
+              <span>CET-4</span>
+              <span>CET-6</span>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="footer section reveal" id="contact">
+        <svg class="contact-mask" viewBox="0 0 1694 970" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" fill="#ede8df" d="M0,0 H1694 V970 H0 Z M683.79,1l328.99,2.75,46.35,43.48.29.27h633.68v887.96h-254.73l-.22.12-61.23,32.89-1052.69-7.17-64.35-25.77-.18-.07H1V47.5h636.68l.29-.3L683.79,1Z" />
+          <path d="M683.79,1l328.99,2.75,46.35,43.48.29.27h633.68v887.96h-254.73l-.22.12-61.23,32.89-1052.69-7.17-64.35-25.77-.18-.07H1V47.5h636.68l.29-.3L683.79,1M683.38,0l-46.12,46.5H0v889.96h259.49l64.53,25.84,1053.14,7.18,61.46-33.01h255.48V46.5h-634.28l-46.63-43.74L683.38,0h0Z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        </svg>
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>欢迎联系我</h2>
+        </div>
+        <div class="contact-list">
+          <a href="tel:18378313377">18378313377</a>
+          <a href="mailto:772206650@qq.com">772206650@qq.com</a>
+          <a href="#projects">Boss直聘</a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
