@@ -442,22 +442,46 @@ function renderStagger(grid) {
   var panelId = panel ? panel.dataset.panel : "default";
   var center = staggerCenters[panelId] || 0;
 
-  // 环绕：确保 center 在有效范围
   center = ((center % cards.length) + cards.length) % cards.length;
   staggerCenters[panelId] = center;
 
+  // 仿 stagger-testimonials: cardWidth / 1.5 为步长
+  var cardEl = cards[0];
+  var cardWidth = (cardEl.offsetWidth > 0 ? cardEl.offsetWidth : 300);
+  var stepX = cardWidth / 1.5;
+
   cards.forEach(function (card, i) {
-    // 计算最短环绕距离
     var rawDist = i - center;
     var len = cards.length;
-    // 选择绝对值最小的环绕距离
     var dist = rawDist;
     if (Math.abs(rawDist + len) < Math.abs(dist)) dist = rawDist + len;
     if (Math.abs(rawDist - len) < Math.abs(dist)) dist = rawDist - len;
 
     card.setAttribute("data-stagger-pos", String(dist));
+
+    if (Math.abs(dist) > 2) {
+      card.style.transform = "";
+      return;
+    }
+
+    var x = stepX * dist;
+    var y = dist === 0 ? -65 : (Math.abs(dist) % 2 === 1 ? 15 : -15);
+    var deg = dist === 0 ? 0 : ((Math.abs(dist) % 2 === 1 ? 2.5 : -2.5) * (dist > 0 ? 1 : -1));
+
+    card.style.transform = "translate(-50%, -50%) translateX(" + Math.round(x) + "px) translateY(" + y + "px) rotate(" + deg + "deg)";
   });
 }
+
+// 窗口大小变化时刷新
+var staggerResizeTimer;
+window.addEventListener("resize", function () {
+  clearTimeout(staggerResizeTimer);
+  staggerResizeTimer = setTimeout(function () {
+    document.querySelectorAll(".portfolio-strip-grid").forEach(function (grid) {
+      renderStagger(grid);
+    });
+  }, 200);
+});
 
 function staggerShift(grid, direction) {
   var panel = grid.closest(".portfolio-panel");

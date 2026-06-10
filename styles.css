@@ -2998,6 +2998,8 @@ main {
 
 .portfolio-strip {
   position: absolute;
+  left: 50%;
+  top: 50%;
   width: clamp(280px, 35vw, 360px);
   aspect-ratio: 1 / 1;
   min-height: 0;
@@ -3005,7 +3007,7 @@ main {
   max-width: none;
   flex: none;
   border: none;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
   border-radius: 0;
   cursor: pointer;
   clip-path: polygon(
@@ -3016,9 +3018,8 @@ main {
     0 100%
   );
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              z-index 0.01s step-end;
+              opacity 0.35s ease;
 }
 
 /* 对角装饰线 */
@@ -3050,38 +3051,19 @@ main {
   z-index: 0;
 }
 
-/* 左侧第二张 */
-.portfolio-strip[data-stagger-pos="-2"] {
-  transform: translateX(-72%) rotate(-2.5deg) scale(0.85);
+/* 非中心卡统一置后（具体偏移由 JS 计算） */
+.portfolio-strip[data-stagger-pos="-2"],
+.portfolio-strip[data-stagger-pos="-1"],
+.portfolio-strip[data-stagger-pos="1"],
+.portfolio-strip[data-stagger-pos="2"] {
   z-index: 1;
-  filter: blur(1px);
 }
 
-/* 左侧第一张 */
-.portfolio-strip[data-stagger-pos="-1"] {
-  transform: translateX(-38%) rotate(-1.2deg) scale(0.92);
-  z-index: 2;
-}
-
-/* 中间聚焦卡片 */
+/* 中间聚焦卡片：描边 + 实体阴影 */
 .portfolio-strip[data-stagger-pos="0"] {
-  transform: translateX(0) rotate(0deg) scale(1);
   z-index: 10;
   border: 1px solid var(--ink-line);
-  box-shadow: 0 12px 0 4px var(--ink-line);
-}
-
-/* 右侧第一张 */
-.portfolio-strip[data-stagger-pos="1"] {
-  transform: translateX(38%) rotate(1.2deg) scale(0.92);
-  z-index: 2;
-}
-
-/* 右侧第二张 */
-.portfolio-strip[data-stagger-pos="2"] {
-  transform: translateX(72%) rotate(2.5deg) scale(0.85);
-  z-index: 1;
-  filter: blur(1px);
+  box-shadow: 0 8px 0 4px var(--ink-line);
 }
 
 .portfolio-scroll-button {
