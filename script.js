@@ -347,6 +347,14 @@ function openPortfolioDetail(strip) {
 
   detailOpenPositions.set(detailElement, window.scrollY);
   detailElement.classList.add("is-active");
+
+  // Lazy-load video
+  var player = detailElement.querySelector(".portfolio-detail-player");
+  if (player && player.getAttribute("data-video-src") && !player.querySelector("video")) {
+    var video = ensurePlayerVideo(player);
+    setupPlayerEvents(player, video);
+  }
+
   requestAnimationFrame(() => {
     const targetY = detailElement.getBoundingClientRect().top + window.scrollY - 80;
     smoothScrollTo(targetY, 320);
@@ -784,33 +792,69 @@ function bindScrollButtons() {
 
 bindScrollButtons();
 
-function initPortfolioVideoPlayers() {
-  const players = document.querySelectorAll(".portfolio-detail-player");
-  players.forEach((player) => {
-    const video = player.querySelector("video");
-    const button = player.querySelector(".portfolio-video-play-button");
-    if (!video || !button) return;
+function ensurePlayerVideo(player) {
+  if (player.querySelector("video")) return player.querySelector("video");
 
-    const syncState = () => {
-      player.classList.toggle("is-playing", !video.paused && !video.ended);
-      video.controls = !(video.paused && (video.currentTime <= 0.05 || video.ended));
-    };
+  var src = player.getAttribute("data-video-src");
+  if (!src) return null;
 
-    button.addEventListener("click", async (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      try {
-        await video.play();
-      } catch (error) {
-        console.warn("Video play was interrupted.", error);
-      }
-      syncState();
-    });
+  var video = document.createElement("video");
+  video.className = "portfolio-detail-video";
+  video.controls = true;
+  video.preload = "metadata";
+  video.playsInline = true;
 
-    video.addEventListener("play", syncState);
-    video.addEventListener("pause", syncState);
-    video.addEventListener("ended", syncState);
+  var source = document.createElement("source");
+  source.src = src;
+  source.type = "video/mp4";
+  video.appendChild(source);
+
+  var button = player.querySelector(".portfolio-video-play-button");
+  if (button) {
+    player.insertBefore(video, button);
+  } else {
+    player.appendChild(video);
+  }
+
+  return video;
+}
+
+function setupPlayerEvents(player, video) {
+  if (!video) return;
+  var button = player.querySelector(".portfolio-video-play-button");
+  if (!button) return;
+  if (player.dataset.playerBound === "true") return;
+  player.dataset.playerBound = "true";
+
+  var syncState = function () {
+    player.classList.toggle("is-playing", !video.paused && !video.ended);
+    video.controls = !(video.paused && (video.currentTime <= 0.05 || video.ended));
+  };
+
+  button.addEventListener("click", async function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    try {
+      await video.play();
+    } catch (error) {
+      console.warn("Video play was interrupted.", error);
+    }
     syncState();
+  });
+
+  video.addEventListener("play", syncState);
+  video.addEventListener("pause", syncState);
+  video.addEventListener("ended", syncState);
+  syncState();
+}
+
+function initPortfolioVideoPlayers() {
+  var players = document.querySelectorAll(".portfolio-detail-player");
+  players.forEach(function (player) {
+    var video = player.querySelector("video");
+    if (video) {
+      setupPlayerEvents(player, video);
+    }
   });
 }
 
@@ -883,28 +927,26 @@ function generateVideoThumbnail(videoSource, mediaElement) {
 }
 
 async function initPortfolioStripVideoCovers() {
-  const internshipStrips = document.querySelectorAll('.portfolio-strip[data-detail-target^="internship-"]');
+  var internshipStrips = document.querySelectorAll('.portfolio-strip[data-detail-target^="internship-"]');
 
-  for (const strip of internshipStrips) {
-    const targetId = strip.dataset.detailTarget;
-    const media = strip.querySelector(".portfolio-strip-media");
-    const detail = document.getElementById(targetId);
-    const detailVideo = detail ? detail.querySelector("video") : null;
-    const source = detailVideo ? detailVideo.querySelector("source") : null;
-    const videoSource = source ? source.getAttribute("src") : detailVideo ? detailVideo.getAttribute("src") : "";
+  for (var i = 0; i < internshipStrips.length; i++) {
+    var strip = internshipStrips[i];
+    var targetId = strip.dataset.detailTarget;
+    var media = strip.querySelector(".portfolio-strip-media");
+    var detail = document.getElementById(targetId);
+    if (!detail || !media) continue;
 
-    if (!media || !videoSource) continue;
+    var player = detail.querySelector(".portfolio-detail-player");
+    var videoSource = player ? player.getAttribute("data-video-src") : "";
+    if (!videoSource) continue;
 
     try {
-      const thumbnail = await generateVideoThumbnail(videoSource, media);
+      var thumbnail = await generateVideoThumbnail(videoSource, media);
       if (thumbnail) {
-        media.style.backgroundImage = `url("${thumbnail}")`;
-        if (detailVideo && !detailVideo.getAttribute("poster")) {
-          detailVideo.setAttribute("poster", thumbnail);
-        }
+        media.style.backgroundImage = "url(\"" + thumbnail + "\")";
       }
     } catch (error) {
-      console.warn(`Thumbnail generation failed for ${targetId}.`, error);
+      console.warn("Thumbnail generation failed for " + targetId + ".", error);
     }
   }
 }
