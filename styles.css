@@ -2766,7 +2766,7 @@ body {
 
 .hero-shell {
   width: calc(100vw - 48px);
-  height: calc(100vh - 48px);
+  height: calc(100svh - 48px);
   min-height: 0;
   margin: 24px;
   position: relative;
@@ -3116,7 +3116,7 @@ body.design-hover-active::before {
 
   /* Prevent 100vh from being clipped by mobile browser chrome */
   .hero-shell {
-    height: calc(100dvh - 48px);
+    height: calc(100svh - 48px);
     min-height: 0;
   }
 }

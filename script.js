@@ -918,6 +918,23 @@ window.addEventListener("load", () => {
 /* ── GSAP Scroll tighten effect ── */
 gsap.registerPlugin(ScrollTrigger);
 
+// 移动端 ScrollTrigger 修复
+ScrollTrigger.config({ ignoreMobileResize: true });
+
+// 页面完全加载后刷新所有 ScrollTrigger
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    ScrollTrigger.refresh(true);
+  }, 300);
+});
+
+// 移动端横竖屏切换时重新计算
+window.addEventListener('orientationchange', () => {
+  setTimeout(() => {
+    ScrollTrigger.refresh(true);
+  }, 500);
+});
+
 function initExpAnimation() {
   ScrollTrigger.getAll()
     .filter(t => t.vars.id && t.vars.id.startsWith('exp-'))
