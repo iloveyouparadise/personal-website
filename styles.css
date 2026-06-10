@@ -2971,6 +2971,38 @@ main {
   border: 1px solid var(--ink-line);
   box-shadow: none;
   border-radius: 0;
+  clip-path: polygon(
+    36px 0%,
+    calc(100% - 36px) 0%,
+    100% 36px,
+    100% calc(100% - 36px),
+    calc(100% - 36px) 100%,
+    36px 100%,
+    0% calc(100% - 36px),
+    0% 36px
+  );
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 对角装饰线 */
+.portfolio-strip::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 34px;
+  transform-origin: top right;
+  transform: rotate(45deg);
+  width: 71px;
+  height: 2px;
+  background: var(--ink-line);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.portfolio-strip:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 0 4px var(--ink-line);
 }
 
 /* ── TrueFocus filter buttons ── */
