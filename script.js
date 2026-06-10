@@ -246,8 +246,70 @@ filterButtons.forEach((button) => {
         requestAnimationFrame(() => refreshPortfolioLoopMetrics(panel));
       }
     });
+
+    updateFocusFrame(button);
   });
 });
+
+/* ── TrueFocus filter animation ── */
+const focusContainer = document.getElementById("filterFocus");
+const focusFrame = focusContainer ? focusContainer.querySelector(".focus-frame") : null;
+let focusInterval = null;
+let focusPaused = false;
+
+function updateFocusFrame(activeBtn) {
+  if (!focusFrame || !focusContainer) return;
+  const containerRect = focusContainer.getBoundingClientRect();
+  const btnRect = activeBtn.getBoundingClientRect();
+  const left = btnRect.left - containerRect.left;
+  const top = btnRect.top - containerRect.top;
+  focusFrame.style.left = left + "px";
+  focusFrame.style.top = top + "px";
+  focusFrame.style.width = btnRect.width + "px";
+  focusFrame.style.height = btnRect.height + "px";
+  focusFrame.style.opacity = "1";
+}
+
+function startFocusAutoCycle() {
+  if (!focusContainer || filterButtons.length < 2) return;
+  const duration = 500;
+  const pause = 1500;
+  let idx = 0;
+
+  updateFocusFrame(filterButtons[0]);
+
+  focusInterval = setInterval(function () {
+    if (focusPaused) return;
+    idx = (idx + 1) % filterButtons.length;
+    updateFocusFrame(filterButtons[idx]);
+  }, duration + pause);
+}
+
+if (focusContainer && focusFrame) {
+  startFocusAutoCycle();
+
+  filterButtons.forEach(function (btn) {
+    btn.addEventListener("mouseenter", function () {
+      focusPaused = true;
+      updateFocusFrame(btn);
+      filterButtons.forEach(function (b) {
+        b.style.filter = b === btn ? "blur(0px)" : "blur(4px)";
+        b.style.transition = "filter 0.5s ease";
+      });
+    });
+    btn.addEventListener("mouseleave", function () {
+      focusPaused = false;
+      filterButtons.forEach(function (b) {
+        b.style.filter = "blur(0px)";
+      });
+    });
+  });
+
+  window.addEventListener("resize", function () {
+    var active = focusContainer.querySelector(".portfolio-filter.is-active") || filterButtons[0];
+    updateFocusFrame(active);
+  });
+}
 
 // Portfolio Strips
 const detailOpenPositions = new WeakMap();
