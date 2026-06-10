@@ -243,7 +243,6 @@ filterButtons.forEach((button) => {
         panel.querySelectorAll(".reveal").forEach((card) => {
           card.classList.add("visible");
         });
-        requestAnimationFrame(() => refreshPortfolioLoopMetrics(panel));
       }
     });
 
@@ -458,67 +457,6 @@ function smoothScrollTo(targetY, duration = 800) {
   requestAnimationFrame(step);
 }
 
-const horizontalScrollAnimations = new WeakMap();
-
-function animateHorizontalScroll(wrapper, targetX, duration = 250) {
-  const clampedTarget = Math.max(0, targetX);
-  const existing = horizontalScrollAnimations.get(wrapper);
-  if (existing) {
-    cancelAnimationFrame(existing);
-  }
-
-  const startX = wrapper.scrollLeft;
-  const diff = clampedTarget - startX;
-  if (Math.abs(diff) < 1) {
-    wrapper.scrollLeft = clampedTarget;
-    return;
-  }
-
-  let startTime = null;
-  const step = (timestamp) => {
-    if (startTime === null) startTime = timestamp;
-    const elapsed = Math.min(timestamp - startTime, duration);
-    const progress = easeOutCubic(elapsed / duration);
-    wrapper.scrollLeft = startX + diff * progress;
-
-    if (elapsed < duration) {
-      const frameId = requestAnimationFrame(step);
-      horizontalScrollAnimations.set(wrapper, frameId);
-    } else {
-      horizontalScrollAnimations.delete(wrapper);
-    }
-  };
-
-  const frameId = requestAnimationFrame(step);
-  horizontalScrollAnimations.set(wrapper, frameId);
-}
-
-function normalizePortfolioLoopPosition(wrapper) {
-  const loopWidth = Number(wrapper.dataset.loopWidth || 0);
-  if (!loopWidth) return;
-
-  if (wrapper.scrollLeft < loopWidth) {
-    wrapper.scrollLeft += loopWidth;
-  } else if (wrapper.scrollLeft >= loopWidth * 2) {
-    wrapper.scrollLeft -= loopWidth;
-  }
-}
-
-function refreshPortfolioLoopMetrics(scope = document) {
-  scope.querySelectorAll(".portfolio-carousel-wrapper").forEach((wrapper) => {
-    const grid = wrapper.querySelector(".portfolio-strip-grid");
-    if (!grid || grid.dataset.loopReady !== "true") return;
-    const loopWidth = grid.scrollWidth / 3;
-    if (!loopWidth) return;
-    wrapper.dataset.loopWidth = String(loopWidth);
-    if (!wrapper.dataset.loopPositioned) {
-      wrapper.scrollLeft = loopWidth;
-      wrapper.dataset.loopPositioned = "true";
-    } else {
-      normalizePortfolioLoopPosition(wrapper);
-    }
-  });
-}
 
 const experienceButton = document.querySelector('.hero-actions .button.primary');
 const projectsButton = document.querySelector('.hero-actions .button.secondary');
@@ -539,83 +477,6 @@ document.addEventListener("click", function (event) {
   closeDetail();
 });
 
-function initCarouselAutoplay(wrapper) {
-  const grid = wrapper.querySelector(".portfolio-strip-grid");
-  if (!grid) return;
-
-  const originalItems = Array.from(grid.children);
-  if (!originalItems.length) return;
-
-  if (!grid.dataset.loopReady) {
-    const prependFragment = document.createDocumentFragment();
-    const appendFragment = document.createDocumentFragment();
-
-    originalItems.forEach((item) => {
-      const prependClone = item.cloneNode(true);
-      prependClone.setAttribute("aria-hidden", "true");
-      prependFragment.appendChild(prependClone);
-
-      const appendClone = item.cloneNode(true);
-      appendClone.setAttribute("aria-hidden", "true");
-      appendFragment.appendChild(appendClone);
-    });
-
-    grid.prepend(prependFragment);
-    grid.append(appendFragment);
-    grid.dataset.loopReady = "true";
-    bindPortfolioStripClicks(grid);
-  }
-
-  requestAnimationFrame(() => refreshPortfolioLoopMetrics(wrapper.parentElement || document));
-
-  const baseSpeed = 0.6; // 更流畅的速度
-  let currentSpeed = baseSpeed;
-  let paused = false;
-  let pauseCount = 0;
-
-  const step = () => {
-    const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
-    const manualPauseUntil = Number(wrapper.dataset.manualPauseUntil || 0);
-    const isManualPaused = Date.now() < manualPauseUntil;
-    const target = paused || isManualPaused ? 0 : baseSpeed;
-    currentSpeed += (target - currentSpeed) * 0.05; // 更平滑的缓动
-    if (isManualPaused && Math.abs(currentSpeed) < 0.08) {
-      currentSpeed = 0;
-    }
-    if (Math.abs(currentSpeed) < 0.01) currentSpeed = 0;
-
-    if (maxScroll > 0 && currentSpeed > 0) {
-      wrapper.scrollLeft += currentSpeed;
-      normalizePortfolioLoopPosition(wrapper);
-    }
-  };
-
-  const intervalId = setInterval(step, 20); // 更平滑的帧率
-
-  // 只在卡片上悬停时暂停
-  const strips = grid.querySelectorAll(".portfolio-strip");
-  strips.forEach((strip) => {
-    strip.addEventListener("mouseenter", () => {
-      pauseCount++;
-      paused = true;
-    });
-    strip.addEventListener("mouseleave", () => {
-      pauseCount--;
-      if (pauseCount <= 0) {
-        pauseCount = 0;
-        paused = false;
-      }
-    });
-  });
-
-  return () => clearInterval(intervalId);
-}
-
-const carouselWrappers = document.querySelectorAll(".portfolio-carousel-wrapper");
-carouselWrappers.forEach((wrapper) => {
-  initCarouselAutoplay(wrapper);
-});
-window.addEventListener("resize", () => refreshPortfolioLoopMetrics());
 
 let designPreviewHost = null;
 let designPreviewImage = null;
@@ -776,62 +637,6 @@ designCarouselWrappers.forEach((wrapper) => {
   initDesignCarouselAutoplay(wrapper);
 });
 
-
-// 窗口完全加载后绑定按钮事件
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    bindScrollButtons();
-  }, 100);
-});
-
-function bindScrollButtons() {
-  // Portfolio Scroll Carousel
-  const scrollButtons = document.querySelectorAll(".portfolio-scroll-button");
-
-  const getStepSize = (wrapper, grid) => {
-    const firstCard = grid ? grid.querySelector(".portfolio-strip") : null;
-    if (!firstCard) return 240;
-
-    const cardWidth = firstCard.getBoundingClientRect().width;
-    const gapValue = grid ? parseFloat(getComputedStyle(grid).gap || "0") : 0;
-    const gap = Number.isFinite(gapValue) ? gapValue : 0;
-    const step = Math.round(cardWidth + gap);
-    return step > 0 ? step : 240;
-  };
-
-  scrollButtons.forEach((button) => {
-    if (button.dataset.scrollBound === "true") return;
-    button.dataset.scrollBound = "true";
-
-    button.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const isNext = this.classList.contains("next");
-      const container = this.closest(".portfolio-carousel-container");
-      const wrapper = container ? container.querySelector(".portfolio-carousel-wrapper") : null;
-      const grid = wrapper ? wrapper.querySelector(".portfolio-strip-grid") : null;
-
-      if (!wrapper) return;
-
-      normalizePortfolioLoopPosition(wrapper);
-
-      // 按单张卡片宽度滚动，手感更自然
-      const scrollAmount = getStepSize(wrapper, grid);
-      const loopWidth = Number(wrapper.dataset.loopWidth || 0);
-      if (loopWidth <= 1) return;
-      const currentScroll = wrapper.scrollLeft;
-      const newScroll = isNext ? currentScroll + scrollAmount : currentScroll - scrollAmount;
-
-      // 手动点击后短暂停掉自动轮播，保证点击优先且响应稳定
-      wrapper.dataset.manualPauseUntil = String(Date.now() + 320);
-      animateHorizontalScroll(wrapper, newScroll, 250);
-      setTimeout(() => normalizePortfolioLoopPosition(wrapper), 260);
-    });
-  });
-}
-
-bindScrollButtons();
 
 function ensurePlayerVideo(player) {
   if (player.querySelector("video")) return player.querySelector("video");

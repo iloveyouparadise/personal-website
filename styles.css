@@ -2967,10 +2967,40 @@ main {
   color: #000;
 }
 
+/* ── Stagger 堆叠卡片布局 ── */
+
+.portfolio-carousel-container {
+  overflow: visible;
+}
+
+.portfolio-carousel-wrapper {
+  overflow: visible;
+}
+
+.portfolio-scroll-button {
+  display: none;
+}
+
+.portfolio-strip-grid {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 820px;
+  padding: 0;
+  overflow: visible;
+}
+
 .portfolio-strip {
+  position: absolute;
+  left: 50%;
+  margin: 0 auto;
   border: 1px solid var(--ink-line);
-  box-shadow: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   border-radius: 0;
+  flex: none;
+  width: clamp(230px, 32vw, 290px);
+  max-width: 290px;
+  min-height: 520px;
   clip-path: polygon(
     36px 0%,
     calc(100% - 36px) 0%,
@@ -2981,8 +3011,9 @@ main {
     0% calc(100% - 36px),
     0% 36px
   );
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              z-index 0.01s step-end;
 }
 
 /* 对角装饰线 */
@@ -3000,8 +3031,17 @@ main {
   pointer-events: none;
 }
 
+/* 堆叠错位 — 每张卡依次向下偏移 + 左右旋转 */
+.portfolio-strip:nth-child(1)  { top: 0;    z-index: 6; transform: translateX(-50%) rotate(-2.5deg) translateX(-14px); }
+.portfolio-strip:nth-child(2)  { top: 52px; z-index: 5; transform: translateX(-50%) rotate(2deg) translateX(12px); }
+.portfolio-strip:nth-child(3)  { top: 104px; z-index: 4; transform: translateX(-50%) rotate(-1.5deg) translateX(-8px); }
+.portfolio-strip:nth-child(4)  { top: 156px; z-index: 3; transform: translateX(-50%) rotate(1.5deg) translateX(10px); }
+.portfolio-strip:nth-child(5)  { top: 208px; z-index: 2; transform: translateX(-50%) rotate(-1deg) translateX(-5px); }
+.portfolio-strip:nth-child(6)  { top: 260px; z-index: 1; transform: translateX(-50%) rotate(0.5deg) translateX(4px); }
+
 .portfolio-strip:hover {
-  transform: translateY(-6px);
+  z-index: 20 !important;
+  transform: translateX(-50%) rotate(0deg) translateY(-6px) !important;
   box-shadow: 0 8px 0 4px var(--ink-line);
 }
 
