@@ -2754,39 +2754,6 @@ body {
   .hero-mask--mobile { display: block; }
 }
 
-/* ── Portfolio button ── */
-.hero-portfolio-btn {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 20;
-  width: 355px;
-  height: 68px;
-  background: #fef700;
-  border: 1.5px solid #000;
-  clip-path: polygon(9.3% 0%, 100% 0%, 100% 100%, 0% 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 28px;
-  text-decoration: none;
-  color: #000;
-  font-family: 'SourceHanSansSC-Heavy', sans-serif;
-  font-size: 18px;
-  white-space: nowrap;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-@media (max-aspect-ratio: 1/1) {
-  .hero-portfolio-btn {
-    width: 240px;
-    height: 52px;
-    font-size: 15px;
-    padding-left: 22px;
-  }
-}
-
 .hero-frame-bg {
   position: absolute;
   inset: 0;
