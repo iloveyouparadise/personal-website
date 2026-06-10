@@ -2703,6 +2703,12 @@ body {
   background: #ede8df;
 }
 
+/* ── Page shell: override glass overflow clipping ── */
+.page-shell {
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
 /* ── Hero frame: video fills container, no clip-path ── */
 .hero-frame {
   position: absolute;
@@ -2773,7 +2779,7 @@ body {
   margin: 0;
   border: 0;
   background: transparent;
-  border-radius: 10px;
+  border-radius: 0;
   box-shadow: none;
 }
 
@@ -2965,6 +2971,7 @@ main {
 .portfolio-scroll-button {
   background: var(--paper);
   color: var(--text);
+  border-radius: 0;
 }
 
 .portfolio-scroll-button:hover {
@@ -3042,6 +3049,12 @@ body.design-hover-active::before {
   }
   .hero-logo:hover {
     transform: scale(1.06);
+  }
+
+  /* Prevent 100vh from being clipped by mobile browser chrome */
+  .hero-shell {
+    height: calc(100dvh - 48px);
+    min-height: 0;
   }
 }
 
