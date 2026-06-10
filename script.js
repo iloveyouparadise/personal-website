@@ -438,6 +438,26 @@ function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
+/* ── 滚动按钮 ── */
+document.addEventListener("click", function (event) {
+  var btn = event.target.closest(".portfolio-scroll-button");
+  if (!btn) return;
+  event.preventDefault();
+  event.stopPropagation();
+
+  var container = btn.closest(".portfolio-carousel-container");
+  var grid = container ? container.querySelector(".portfolio-strip-grid") : null;
+  if (!grid) return;
+
+  var card = grid.querySelector(".portfolio-strip");
+  if (!card) return;
+  var cardWidth = card.offsetWidth;
+  var marginLeft = parseFloat(getComputedStyle(card).marginLeft) || 0;
+  var step = cardWidth + marginLeft;
+  var isNext = btn.classList.contains("next");
+  grid.scrollBy({ left: isNext ? step : -step, behavior: "smooth" });
+});
+
 function smoothScrollTo(targetY, duration = 800) {
   const startY = window.scrollY;
   const diff = targetY - startY;

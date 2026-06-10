@@ -214,7 +214,10 @@
           </div>
 
           <div class="portfolio-panel is-active" data-panel="school">
-            <div class="portfolio-strip-grid reveal">
+            <div class="portfolio-carousel-container reveal">
+              <button class="portfolio-scroll-button prev" type="button" aria-label="上一个">‹</button>
+              <div class="portfolio-carousel-wrapper">
+                <div class="portfolio-strip-grid">
               <button class="portfolio-strip" type="button" data-detail-target="school-01">
                 <span class="portfolio-strip-media cover-school-01"></span>
                 <span class="portfolio-strip-hover">
@@ -293,10 +296,16 @@
                 </span>
               </button>
                 </div>
+              </div>
+              <button class="portfolio-scroll-button next" type="button" aria-label="下一个">›</button>
+            </div>
           </div>
 
           <div class="portfolio-panel" data-panel="internship" hidden>
-            <div class="portfolio-strip-grid">
+            <div class="portfolio-carousel-container reveal">
+              <button class="portfolio-scroll-button prev" type="button" aria-label="上一个">‹</button>
+              <div class="portfolio-carousel-wrapper">
+                <div class="portfolio-strip-grid">
               <button class="portfolio-strip" type="button" data-detail-target="internship-01">
                 <span class="portfolio-strip-media cover-internship-01"></span>
                 <span class="portfolio-strip-hover">
@@ -375,6 +384,9 @@
                 </span>
               </button>
                 </div>
+              </div>
+              <button class="portfolio-scroll-button next" type="button" aria-label="下一个">›</button>
+            </div>
           </div>
 
           <!-- 唯一动态详情容器 -->
