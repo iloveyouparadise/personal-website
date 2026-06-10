@@ -2992,7 +2992,7 @@ main {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 480px;
+  height: 500px;
   overflow: visible;
 }
 
@@ -3000,11 +3000,10 @@ main {
   position: absolute;
   width: clamp(280px, 35vw, 360px);
   aspect-ratio: 1 / 1;
-  border: 1px solid var(--ink-line);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   border-radius: 0;
   cursor: pointer;
-  /* 只裁切右上角 */
   clip-path: polygon(
     0 0,
     calc(100% - 50px) 0,
@@ -3049,17 +3048,17 @@ main {
 
 /* 左侧第二张 */
 .portfolio-strip[data-stagger-pos="-2"] {
-  transform: translateX(-55%) rotate(-3deg) scale(0.82);
+  transform: translateX(-72%) rotate(-2.5deg) scale(0.85);
   z-index: 1;
-  opacity: 0.5;
+  opacity: 0.45;
   filter: blur(1px);
 }
 
 /* 左侧第一张 */
 .portfolio-strip[data-stagger-pos="-1"] {
-  transform: translateX(-28%) rotate(-1.5deg) scale(0.9);
+  transform: translateX(-38%) rotate(-1.2deg) scale(0.92);
   z-index: 2;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 /* 中间聚焦卡片 */
@@ -3067,21 +3066,22 @@ main {
   transform: translateX(0) rotate(0deg) scale(1);
   z-index: 10;
   opacity: 1;
+  border: 1px solid var(--ink-line);
   box-shadow: 0 12px 0 4px var(--ink-line);
 }
 
 /* 右侧第一张 */
 .portfolio-strip[data-stagger-pos="1"] {
-  transform: translateX(28%) rotate(1.5deg) scale(0.9);
+  transform: translateX(38%) rotate(1.2deg) scale(0.92);
   z-index: 2;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 /* 右侧第二张 */
 .portfolio-strip[data-stagger-pos="2"] {
-  transform: translateX(55%) rotate(3deg) scale(0.82);
+  transform: translateX(72%) rotate(2.5deg) scale(0.85);
   z-index: 1;
-  opacity: 0.5;
+  opacity: 0.45;
   filter: blur(1px);
 }
 
