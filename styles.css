@@ -2973,41 +2973,37 @@ main {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0;
   overflow: visible;
-  padding: 30px 0 24px;
+  padding: 20px 0 24px;
 }
 
 .portfolio-carousel-wrapper {
   overflow: visible;
   flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .portfolio-strip-grid {
+  position: relative;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 0;
-  overflow-x: auto;
-  overflow-y: visible;
-  padding: 20px 8px 32px;
-  scrollbar-width: none;
-}
-
-.portfolio-strip-grid::-webkit-scrollbar {
-  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 480px;
+  overflow: visible;
 }
 
 .portfolio-strip {
-  position: relative;
-  flex: 0 0 clamp(260px, 30vw, 320px);
-  width: clamp(260px, 30vw, 320px);
+  position: absolute;
+  width: clamp(280px, 35vw, 360px);
   aspect-ratio: 1 / 1;
-  min-height: 0;
-  margin-left: -32px;
   border: 1px solid var(--ink-line);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   border-radius: 0;
+  cursor: pointer;
   /* 只裁切右上角 */
   clip-path: polygon(
     0 0,
@@ -3016,16 +3012,13 @@ main {
     100% 100%,
     0 100%
   );
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
               z-index 0.01s step-end;
 }
 
-.portfolio-strip:first-child {
-  margin-left: 0;
-}
-
-/* 对角装饰线 —— 右上角切角处 */
+/* 对角装饰线 */
 .portfolio-strip::before {
   content: "";
   position: absolute;
@@ -3040,18 +3033,56 @@ main {
   pointer-events: none;
 }
 
-/* 交错旋转 + 纵向偏移 → 堆叠错落感 */
-.portfolio-strip:nth-child(1)  { z-index: 6; transform: rotate(-2deg) translateY(-6px); }
-.portfolio-strip:nth-child(2)  { z-index: 5; transform: rotate(1.8deg) translateY(4px); }
-.portfolio-strip:nth-child(3)  { z-index: 4; transform: rotate(-1.2deg) translateY(-3px); }
-.portfolio-strip:nth-child(4)  { z-index: 3; transform: rotate(1.5deg) translateY(6px); }
-.portfolio-strip:nth-child(5)  { z-index: 2; transform: rotate(-0.8deg) translateY(-4px); }
-.portfolio-strip:nth-child(6)  { z-index: 1; transform: rotate(0.6deg) translateY(2px); }
+/* —— 堆叠位置（由 JS data-stagger-pos 驱动）—— */
 
-.portfolio-strip:hover {
-  z-index: 20 !important;
-  transform: rotate(0deg) translateY(-12px) !important;
+/* 隐藏（屏幕外） */
+.portfolio-strip[data-stagger-pos="-3"],
+.portfolio-strip[data-stagger-pos="3"],
+.portfolio-strip[data-stagger-pos="-4"],
+.portfolio-strip[data-stagger-pos="4"],
+.portfolio-strip[data-stagger-pos="-5"],
+.portfolio-strip[data-stagger-pos="5"] {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 左侧第二张 */
+.portfolio-strip[data-stagger-pos="-2"] {
+  transform: translateX(-55%) rotate(-3deg) scale(0.82);
+  z-index: 1;
+  opacity: 0.5;
+  filter: blur(1px);
+}
+
+/* 左侧第一张 */
+.portfolio-strip[data-stagger-pos="-1"] {
+  transform: translateX(-28%) rotate(-1.5deg) scale(0.9);
+  z-index: 2;
+  opacity: 0.75;
+}
+
+/* 中间聚焦卡片 */
+.portfolio-strip[data-stagger-pos="0"] {
+  transform: translateX(0) rotate(0deg) scale(1);
+  z-index: 10;
+  opacity: 1;
   box-shadow: 0 12px 0 4px var(--ink-line);
+}
+
+/* 右侧第一张 */
+.portfolio-strip[data-stagger-pos="1"] {
+  transform: translateX(28%) rotate(1.5deg) scale(0.9);
+  z-index: 2;
+  opacity: 0.75;
+}
+
+/* 右侧第二张 */
+.portfolio-strip[data-stagger-pos="2"] {
+  transform: translateX(55%) rotate(3deg) scale(0.82);
+  z-index: 1;
+  opacity: 0.5;
+  filter: blur(1px);
 }
 
 .portfolio-scroll-button {

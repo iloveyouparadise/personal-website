@@ -240,14 +240,11 @@ filterButtons.forEach((button) => {
       panel.hidden = !isActive;
 
       if (isActive) {
-        panel.querySelectorAll(".reveal").forEach((card) => {
+        panel.querySelectorAll(".reveal").forEach(function (card) {
           card.classList.add("visible");
         });
-        // 确保无限循环已初始化（隐藏面板的 grid 在加载时尺寸为 0）
         var grid = panel.querySelector(".portfolio-strip-grid");
-        if (grid && grid.dataset.loopReady !== "true") {
-          initPortfolioLoop(grid);
-        }
+        if (grid) renderStagger(grid);
       }
     });
 
@@ -429,80 +426,68 @@ function openPortfolioDetail(strip) {
   });
 }
 
-function bindPortfolioStripClicks(scope = document) {
-  scope.querySelectorAll(".portfolio-strip").forEach((strip) => {
-    if (strip.dataset.detailBound === "true") return;
-    strip.dataset.detailBound = "true";
-    strip.addEventListener("click", () => openPortfolioDetail(strip));
-  });
-}
-
-bindPortfolioStripClicks();
 
 function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-/* ── 无限循环滚动 ── */
+/* ── Stagger 堆叠轮播 ── */
 
-function initPortfolioLoop(grid) {
-  if (!grid || grid.dataset.loopReady === "true") return;
+var staggerCenters = {}; // panelId → centerIndex
+
+function renderStagger(grid) {
   var cards = Array.from(grid.children);
   if (!cards.length) return;
-  // 面板隐藏时尺寸为 0，等切换到可见时再初始化
-  if (cards[0].offsetWidth === 0) return;
+  var panel = grid.closest(".portfolio-panel");
+  var panelId = panel ? panel.dataset.panel : "default";
+  var center = staggerCenters[panelId] || 0;
 
-  // 克隆 3 组：前 + 原 + 后
-  var prependFragment = document.createDocumentFragment();
-  var appendFragment = document.createDocumentFragment();
-  cards.forEach(function (card) {
-    var pre = card.cloneNode(true);
-    pre.setAttribute("aria-hidden", "true");
-    prependFragment.appendChild(pre);
-    var post = card.cloneNode(true);
-    post.setAttribute("aria-hidden", "true");
-    appendFragment.appendChild(post);
+  // 环绕：确保 center 在有效范围
+  center = ((center % cards.length) + cards.length) % cards.length;
+  staggerCenters[panelId] = center;
+
+  cards.forEach(function (card, i) {
+    // 计算最短环绕距离
+    var rawDist = i - center;
+    var len = cards.length;
+    // 选择绝对值最小的环绕距离
+    var dist = rawDist;
+    if (Math.abs(rawDist + len) < Math.abs(dist)) dist = rawDist + len;
+    if (Math.abs(rawDist - len) < Math.abs(dist)) dist = rawDist - len;
+
+    card.setAttribute("data-stagger-pos", String(dist));
   });
-  grid.prepend(prependFragment);
-  grid.append(appendFragment);
-  grid.dataset.loopReady = "true";
-  bindPortfolioStripClicks(grid);
-
-  // 定位到中间那组
-  var cardWidth = cards[0].offsetWidth;
-  var marginLeft = parseFloat(getComputedStyle(cards[0]).marginLeft) || 0;
-  var setWidth = (cardWidth + marginLeft) * cards.length;
-  grid.scrollLeft = setWidth;
 }
 
-function getLoopStep(grid) {
-  var card = grid.querySelector(".portfolio-strip");
-  if (!card) return 300;
-  return card.offsetWidth + (parseFloat(getComputedStyle(card).marginLeft) || 0);
+function staggerShift(grid, direction) {
+  var panel = grid.closest(".portfolio-panel");
+  var panelId = panel ? panel.dataset.panel : "default";
+  var center = staggerCenters[panelId] || 0;
+  staggerCenters[panelId] = center + direction;
+  renderStagger(grid);
 }
 
-function normalizeLoopPosition(grid) {
-  var card = grid.querySelector(".portfolio-strip");
-  if (!card) return;
-  var cardStep = getLoopStep(grid);
-  var originalCount = grid.querySelectorAll(".portfolio-strip:not([aria-hidden])").length;
-  if (!originalCount) return;
-  var setWidth = cardStep * originalCount;
-  var maxScroll = setWidth * 3;
-
-  if (grid.scrollLeft < setWidth * 0.5) {
-    grid.scrollLeft += setWidth;
-  } else if (grid.scrollLeft > setWidth * 2.5) {
-    grid.scrollLeft -= setWidth;
-  }
+function staggerGoTo(grid, cardIndex) {
+  var panel = grid.closest(".portfolio-panel");
+  var panelId = panel ? panel.dataset.panel : "default";
+  staggerCenters[panelId] = cardIndex;
+  renderStagger(grid);
 }
 
-// 初始化所有 portfolio 面板的无限循环
+// 初始化
 document.querySelectorAll(".portfolio-strip-grid").forEach(function (grid) {
-  initPortfolioLoop(grid);
+  renderStagger(grid);
 });
 
-// 滚动按钮
+// 切换面板时重新渲染
+portfolioPanels.forEach(function (panel) {
+  var grid = panel.querySelector(".portfolio-strip-grid");
+  if (!grid) return;
+  // 用 MutationObserver 或直接在 filter handler 里调用
+  renderStagger(grid);
+});
+
+// 滚动按钮 → 切换聚焦卡片
 document.addEventListener("click", function (event) {
   var btn = event.target.closest(".portfolio-scroll-button");
   if (!btn) return;
@@ -511,20 +496,32 @@ document.addEventListener("click", function (event) {
 
   var container = btn.closest(".portfolio-carousel-container");
   var grid = container ? container.querySelector(".portfolio-strip-grid") : null;
-  if (!grid || grid.dataset.loopReady !== "true") return;
+  if (!grid) return;
 
-  var step = getLoopStep(grid);
   var isNext = btn.classList.contains("next");
-  grid.scrollBy({ left: isNext ? step : -step, behavior: "smooth" });
-  setTimeout(function () { normalizeLoopPosition(grid); }, 350);
+  staggerShift(grid, isNext ? 1 : -1);
 });
 
-// 手动滚动后也修正位置
-document.querySelectorAll(".portfolio-strip-grid").forEach(function (grid) {
-  grid.addEventListener("scroll", function () {
-    if (grid.dataset.loopReady !== "true") return;
-    normalizeLoopPosition(grid);
-  }, { passive: true });
+// 点击卡片：侧边卡 → 聚焦 / 中间卡 → 打开详情
+document.addEventListener("click", function (event) {
+  var card = event.target.closest(".portfolio-strip");
+  if (!card) return;
+  // 忽略滚动按钮区域的点击
+  if (event.target.closest(".portfolio-scroll-button")) return;
+
+  var grid = card.closest(".portfolio-strip-grid");
+  if (!grid) return;
+
+  if (card.getAttribute("data-stagger-pos") === "0") {
+    // 中间聚焦卡 → 打开详情
+    openPortfolioDetail(card);
+    return;
+  }
+
+  // 侧边卡 → 带到中间
+  var cards = Array.from(grid.children);
+  var index = cards.indexOf(card);
+  if (index >= 0) staggerGoTo(grid, index);
 });
 
 function smoothScrollTo(targetY, duration = 800) {
