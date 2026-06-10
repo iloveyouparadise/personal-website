@@ -3000,6 +3000,10 @@ main {
   position: absolute;
   width: clamp(280px, 35vw, 360px);
   aspect-ratio: 1 / 1;
+  min-height: 0;
+  min-width: 0;
+  max-width: none;
+  flex: none;
   border: none;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   border-radius: 0;
@@ -3050,7 +3054,6 @@ main {
 .portfolio-strip[data-stagger-pos="-2"] {
   transform: translateX(-72%) rotate(-2.5deg) scale(0.85);
   z-index: 1;
-  opacity: 0.45;
   filter: blur(1px);
 }
 
@@ -3058,14 +3061,12 @@ main {
 .portfolio-strip[data-stagger-pos="-1"] {
   transform: translateX(-38%) rotate(-1.2deg) scale(0.92);
   z-index: 2;
-  opacity: 0.7;
 }
 
 /* 中间聚焦卡片 */
 .portfolio-strip[data-stagger-pos="0"] {
   transform: translateX(0) rotate(0deg) scale(1);
   z-index: 10;
-  opacity: 1;
   border: 1px solid var(--ink-line);
   box-shadow: 0 12px 0 4px var(--ink-line);
 }
@@ -3074,14 +3075,12 @@ main {
 .portfolio-strip[data-stagger-pos="1"] {
   transform: translateX(38%) rotate(1.2deg) scale(0.92);
   z-index: 2;
-  opacity: 0.7;
 }
 
 /* 右侧第二张 */
 .portfolio-strip[data-stagger-pos="2"] {
   transform: translateX(72%) rotate(2.5deg) scale(0.85);
   z-index: 1;
-  opacity: 0.45;
   filter: blur(1px);
 }
 
