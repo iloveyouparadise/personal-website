@@ -3,17 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>唐烨 | Personal Resume</title>
+    <title>唐烨 | 个人网站</title>
     <meta
       name="description"
       content="唐烨的个人简历网站，聚焦视频剪辑、新媒体运营与作品集展示。"
     />
     <link rel="icon" type="image/png" href="./tytestlogo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preload critical above-fold fonts -->
+    <link rel="preload" href="./fonts/SourceHanSansSC-Heavy.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="./fonts/Lineal-Light.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="./fonts/LorchinSansP0.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   </head>
   <body>
     <!-- 加载界面 -->
@@ -40,6 +42,8 @@
               class="hero-frame-bg"
               src="./作品集混剪v0.1-soConvert.webp"
               alt=""
+              fetchpriority="high"
+              decoding="sync"
             />
           </div>
 
@@ -669,43 +673,43 @@
             <div class="design-carousel-wrapper">
               <div class="design-strip-grid">
                 <div class="design-item">
-                  <img src="./myimg/20260418-142839.png" alt="设计作品 1">
+                  <img loading="lazy" decoding="async" src="./myimg/20260418-142839.png" alt="设计作品 1">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/20260418-142843.png" alt="设计作品 2">
+                  <img loading="lazy" decoding="async" src="./myimg/20260418-142843.png" alt="设计作品 2">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/她上海之旅节目封面.png" alt="她上海之旅节目封面">
+                  <img loading="lazy" decoding="async" src="./myimg/她上海之旅节目封面.png" alt="她上海之旅节目封面">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/成龙电影下海报 1.png" alt="成龙电影下海报 1">
+                  <img loading="lazy" decoding="async" src="./myimg/成龙电影下海报 1.png" alt="成龙电影下海报 1">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/新奥尔良节目封面.png" alt="新奥尔良节目封面">
+                  <img loading="lazy" decoding="async" src="./myimg/新奥尔良节目封面.png" alt="新奥尔良节目封面">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/日本是枝裕和宣传海报.png" alt="日本是枝裕和宣传海报">
+                  <img loading="lazy" decoding="async" src="./myimg/日本是枝裕和宣传海报.png" alt="日本是枝裕和宣传海报">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/洛杉矶1.png" alt="洛杉矶1">
+                  <img loading="lazy" decoding="async" src="./myimg/洛杉矶1.png" alt="洛杉矶1">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/洛杉矶2.png" alt="洛杉矶2">
+                  <img loading="lazy" decoding="async" src="./myimg/洛杉矶2.png" alt="洛杉矶2">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/洛杉矶3（音乐推荐）.png" alt="洛杉矶3（音乐推荐）">
+                  <img loading="lazy" decoding="async" src="./myimg/洛杉矶3（音乐推荐）.png" alt="洛杉矶3（音乐推荐）">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/绿皮书宣传海报.png" alt="绿皮书宣传海报">
+                  <img loading="lazy" decoding="async" src="./myimg/绿皮书宣传海报.png" alt="绿皮书宣传海报">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/香港海报 2.png" alt="香港海报 2">
+                  <img loading="lazy" decoding="async" src="./myimg/香港海报 2.png" alt="香港海报 2">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/香港海报 3.png" alt="香港海报 3">
+                  <img loading="lazy" decoding="async" src="./myimg/香港海报 3.png" alt="香港海报 3">
                 </div>
                 <div class="design-item">
-                  <img src="./myimg/香港海报.png" alt="香港海报">
+                  <img loading="lazy" decoding="async" src="./myimg/香港海报.png" alt="香港海报">
                 </div>
               </div>
             </div>
@@ -752,6 +756,6 @@
       </footer>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
   </body>
 </html>

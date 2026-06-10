@@ -3,3 +3,5 @@ node_modules/
 vedio/
 *.backup
 .claude/
+.agents/
+fonts/_originals/
