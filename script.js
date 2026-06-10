@@ -247,6 +247,7 @@ filterButtons.forEach((button) => {
       }
     });
 
+    updateFocusFrame(button);
   });
 });
 
@@ -273,6 +274,10 @@ function hideFocusFrame() {
 }
 
 if (focusContainer && focusFrame) {
+  // Show frame on active button on load
+  var initial = focusContainer.querySelector(".portfolio-filter.is-active") || filterButtons[0];
+  if (initial) updateFocusFrame(initial);
+
   filterButtons.forEach(function (btn) {
     btn.addEventListener("mouseenter", function () {
       updateFocusFrame(btn);
