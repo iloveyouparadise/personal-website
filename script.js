@@ -322,19 +322,28 @@ function closeDetails(panel) {
   });
 }
 
+function setPortfolioSubPageMode(panel, active) {
+  var toolbar = document.querySelector(".portfolio-toolbar");
+  var heading = document.querySelector(".portfolio-heading");
+  if (panel) panel.classList.toggle("detail-is-open", active);
+  if (toolbar) toolbar.classList.toggle("detail-is-open", active);
+  if (heading) heading.classList.toggle("detail-is-open", active);
+}
+
 function openPortfolioDetail(strip) {
   if (!strip) return;
-  const targetId = strip.dataset.detailTarget;
-  const detailElement = document.getElementById(targetId);
+  var targetId = strip.dataset.detailTarget;
+  var detailElement = document.getElementById(targetId);
   if (!detailElement) return;
 
-  const panel = strip.closest(".portfolio-panel");
-  const activeDetail = panel ? panel.querySelector(".portfolio-detail.is-active") : null;
+  var panel = strip.closest(".portfolio-panel");
+  var activeDetail = panel ? panel.querySelector(".portfolio-detail.is-active") : null;
 
   if (activeDetail === detailElement) {
     pauseDetailVideo(detailElement);
     detailElement.classList.remove("is-active");
-    const lastScroll = detailOpenPositions.get(detailElement);
+    setPortfolioSubPageMode(panel, false);
+    var lastScroll = detailOpenPositions.get(detailElement);
     if (typeof lastScroll === "number") {
       window.scrollTo({ top: lastScroll, behavior: "smooth" });
     }
@@ -347,6 +356,7 @@ function openPortfolioDetail(strip) {
 
   detailOpenPositions.set(detailElement, window.scrollY);
   detailElement.classList.add("is-active");
+  setPortfolioSubPageMode(panel, true);
 
   // Lazy-load video
   var player = detailElement.querySelector(".portfolio-detail-player");
@@ -355,8 +365,8 @@ function openPortfolioDetail(strip) {
     setupPlayerEvents(player, video);
   }
 
-  requestAnimationFrame(() => {
-    const targetY = detailElement.getBoundingClientRect().top + window.scrollY - 80;
+  requestAnimationFrame(function () {
+    var targetY = detailElement.getBoundingClientRect().top + window.scrollY - 80;
     smoothScrollTo(targetY, 320);
   });
 }
@@ -482,17 +492,18 @@ if (experienceButton && projectsButton) {
   });
 }
 
-document.addEventListener("click", (event) => {
-  const button = event.target.closest(".portfolio-detail-close");
+document.addEventListener("click", function (event) {
+  var button = event.target.closest(".portfolio-detail-close");
   if (!button) return;
   event.preventDefault();
   event.stopPropagation();
 
-  const detail = button.closest(".portfolio-detail");
+  var detail = button.closest(".portfolio-detail");
   if (!detail) return;
   pauseDetailVideo(detail);
   detail.classList.remove("is-active");
-  const lastScroll = detailOpenPositions.get(detail);
+  setPortfolioSubPageMode(detail.closest(".portfolio-panel"), false);
+  var lastScroll = detailOpenPositions.get(detail);
   if (typeof lastScroll === "number") {
     smoothScrollTo(lastScroll, 700);
   }

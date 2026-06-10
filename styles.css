@@ -1290,6 +1290,8 @@ main {
   max-width: 270px;
   min-width: 0;
   box-sizing: border-box;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -3092,6 +3094,18 @@ main {
 
 .portfolio-detail-close {
   color: var(--text);
+}
+
+/* —— 作品集子界面模式 —— */
+.portfolio-panel.detail-is-open .portfolio-carousel-container,
+.portfolio-toolbar.detail-is-open,
+.portfolio-heading.detail-is-open {
+  display: none;
+}
+
+.portfolio-detail.is-active {
+  margin-top: 0;
+  min-height: 80vh;
 }
 
 body.design-hover-active::before {
