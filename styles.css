@@ -1203,7 +1203,9 @@ main {
   z-index: 1;
   width: 100%;
   min-width: 0;
-  overflow-x: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
   padding-top: 8px;
 }
 
@@ -1963,8 +1965,9 @@ main {
   position: relative;
   width: 100%;
   min-width: 0;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: hidden;
+  scrollbar-width: none;
   padding-top: 8px;
 }
 
@@ -2971,7 +2974,6 @@ main {
 .portfolio-scroll-button {
   background: var(--paper);
   color: var(--text);
-  border-radius: 0;
 }
 
 .portfolio-scroll-button:hover {
