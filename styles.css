@@ -3031,7 +3031,7 @@ main {
   transform-origin: top right;
   transform: rotate(45deg);
   width: 71px;
-  height: 2px;
+  height: 1px;
   background: var(--ink-line);
   z-index: 2;
   pointer-events: none;
@@ -3063,7 +3063,7 @@ main {
 .portfolio-strip[data-stagger-pos="0"] {
   z-index: 10;
   border: 1px solid var(--ink-line);
-  box-shadow: 0 8px 0 4px var(--ink-line);
+  box-shadow: 0 6px 0 2px var(--ink-line);
 }
 
 .portfolio-scroll-button {
