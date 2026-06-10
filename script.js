@@ -247,15 +247,12 @@ filterButtons.forEach((button) => {
       }
     });
 
-    updateFocusFrame(button);
   });
 });
 
-/* ── TrueFocus filter animation ── */
+/* ── TrueFocus filter hover effect ── */
 const focusContainer = document.getElementById("filterFocus");
 const focusFrame = focusContainer ? focusContainer.querySelector(".focus-frame") : null;
-let focusInterval = null;
-let focusPaused = false;
 
 function updateFocusFrame(activeBtn) {
   if (!focusFrame || !focusContainer) return;
@@ -270,27 +267,14 @@ function updateFocusFrame(activeBtn) {
   focusFrame.style.opacity = "1";
 }
 
-function startFocusAutoCycle() {
-  if (!focusContainer || filterButtons.length < 2) return;
-  const duration = 500;
-  const pause = 1500;
-  let idx = 0;
-
-  updateFocusFrame(filterButtons[0]);
-
-  focusInterval = setInterval(function () {
-    if (focusPaused) return;
-    idx = (idx + 1) % filterButtons.length;
-    updateFocusFrame(filterButtons[idx]);
-  }, duration + pause);
+function hideFocusFrame() {
+  if (!focusFrame) return;
+  focusFrame.style.opacity = "0";
 }
 
 if (focusContainer && focusFrame) {
-  startFocusAutoCycle();
-
   filterButtons.forEach(function (btn) {
     btn.addEventListener("mouseenter", function () {
-      focusPaused = true;
       updateFocusFrame(btn);
       filterButtons.forEach(function (b) {
         b.style.filter = b === btn ? "blur(0px)" : "blur(4px)";
@@ -298,7 +282,7 @@ if (focusContainer && focusFrame) {
       });
     });
     btn.addEventListener("mouseleave", function () {
-      focusPaused = false;
+      hideFocusFrame();
       filterButtons.forEach(function (b) {
         b.style.filter = "blur(0px)";
       });
@@ -306,8 +290,7 @@ if (focusContainer && focusFrame) {
   });
 
   window.addEventListener("resize", function () {
-    var active = focusContainer.querySelector(".portfolio-filter.is-active") || filterButtons[0];
-    updateFocusFrame(active);
+    hideFocusFrame();
   });
 }
 
