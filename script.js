@@ -465,7 +465,7 @@ function renderStagger(grid) {
     }
 
     var x = stepX * dist;
-    var y = dist === 0 ? -65 : (Math.abs(dist) % 2 === 1 ? 15 : -15);
+    var y = dist === 0 ? -30 : (Math.abs(dist) % 2 === 1 ? 8 : -8);
     var deg = dist === 0 ? 0 : ((Math.abs(dist) % 2 === 1 ? 2.5 : -2.5) * (dist > 0 ? 1 : -1));
 
     card.style.transform = "translate(-50%, -50%) translateX(" + Math.round(x) + "px) translateY(" + y + "px) rotate(" + deg + "deg)";
