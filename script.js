@@ -243,6 +243,11 @@ filterButtons.forEach((button) => {
         panel.querySelectorAll(".reveal").forEach((card) => {
           card.classList.add("visible");
         });
+        // 确保无限循环已初始化（隐藏面板的 grid 在加载时尺寸为 0）
+        var grid = panel.querySelector(".portfolio-strip-grid");
+        if (grid && grid.dataset.loopReady !== "true") {
+          initPortfolioLoop(grid);
+        }
       }
     });
 
@@ -438,7 +443,66 @@ function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-/* ── 滚动按钮 ── */
+/* ── 无限循环滚动 ── */
+
+function initPortfolioLoop(grid) {
+  if (!grid || grid.dataset.loopReady === "true") return;
+  var cards = Array.from(grid.children);
+  if (!cards.length) return;
+  // 面板隐藏时尺寸为 0，等切换到可见时再初始化
+  if (cards[0].offsetWidth === 0) return;
+
+  // 克隆 3 组：前 + 原 + 后
+  var prependFragment = document.createDocumentFragment();
+  var appendFragment = document.createDocumentFragment();
+  cards.forEach(function (card) {
+    var pre = card.cloneNode(true);
+    pre.setAttribute("aria-hidden", "true");
+    prependFragment.appendChild(pre);
+    var post = card.cloneNode(true);
+    post.setAttribute("aria-hidden", "true");
+    appendFragment.appendChild(post);
+  });
+  grid.prepend(prependFragment);
+  grid.append(appendFragment);
+  grid.dataset.loopReady = "true";
+  bindPortfolioStripClicks(grid);
+
+  // 定位到中间那组
+  var cardWidth = cards[0].offsetWidth;
+  var marginLeft = parseFloat(getComputedStyle(cards[0]).marginLeft) || 0;
+  var setWidth = (cardWidth + marginLeft) * cards.length;
+  grid.scrollLeft = setWidth;
+}
+
+function getLoopStep(grid) {
+  var card = grid.querySelector(".portfolio-strip");
+  if (!card) return 300;
+  return card.offsetWidth + (parseFloat(getComputedStyle(card).marginLeft) || 0);
+}
+
+function normalizeLoopPosition(grid) {
+  var card = grid.querySelector(".portfolio-strip");
+  if (!card) return;
+  var cardStep = getLoopStep(grid);
+  var originalCount = grid.querySelectorAll(".portfolio-strip:not([aria-hidden])").length;
+  if (!originalCount) return;
+  var setWidth = cardStep * originalCount;
+  var maxScroll = setWidth * 3;
+
+  if (grid.scrollLeft < setWidth * 0.5) {
+    grid.scrollLeft += setWidth;
+  } else if (grid.scrollLeft > setWidth * 2.5) {
+    grid.scrollLeft -= setWidth;
+  }
+}
+
+// 初始化所有 portfolio 面板的无限循环
+document.querySelectorAll(".portfolio-strip-grid").forEach(function (grid) {
+  initPortfolioLoop(grid);
+});
+
+// 滚动按钮
 document.addEventListener("click", function (event) {
   var btn = event.target.closest(".portfolio-scroll-button");
   if (!btn) return;
@@ -447,15 +511,20 @@ document.addEventListener("click", function (event) {
 
   var container = btn.closest(".portfolio-carousel-container");
   var grid = container ? container.querySelector(".portfolio-strip-grid") : null;
-  if (!grid) return;
+  if (!grid || grid.dataset.loopReady !== "true") return;
 
-  var card = grid.querySelector(".portfolio-strip");
-  if (!card) return;
-  var cardWidth = card.offsetWidth;
-  var marginLeft = parseFloat(getComputedStyle(card).marginLeft) || 0;
-  var step = cardWidth + marginLeft;
+  var step = getLoopStep(grid);
   var isNext = btn.classList.contains("next");
   grid.scrollBy({ left: isNext ? step : -step, behavior: "smooth" });
+  setTimeout(function () { normalizeLoopPosition(grid); }, 350);
+});
+
+// 手动滚动后也修正位置
+document.querySelectorAll(".portfolio-strip-grid").forEach(function (grid) {
+  grid.addEventListener("scroll", function () {
+    if (grid.dataset.loopReady !== "true") return;
+    normalizeLoopPosition(grid);
+  }, { passive: true });
 });
 
 function smoothScrollTo(targetY, duration = 800) {
