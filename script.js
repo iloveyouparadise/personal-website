@@ -337,6 +337,19 @@ function closeDetail() {
   var detailEl = document.getElementById("portfolioDetail");
   if (!detailEl) return;
   pauseDetailVideo(detailEl);
+  // 彻底清理视频元素，防止后台继续播放
+  var player = detailEl.querySelector(".portfolio-detail-player");
+  if (player) {
+    var video = player.querySelector("video");
+    if (video) {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      if (video.parentNode) video.parentNode.removeChild(video);
+    }
+    player.classList.remove("is-playing");
+    player.dataset.playerBound = "";
+  }
   detailEl.classList.remove("is-active");
 
   var activePanel = document.querySelector(".portfolio-panel.is-active");
@@ -358,9 +371,14 @@ function renderDetailContent(targetId) {
 
   // Update player
   var player = detailEl.querySelector(".portfolio-detail-player");
-  // Remove old video
+  // 彻底清理旧视频
   var oldVideo = player.querySelector("video");
-  if (oldVideo) oldVideo.remove();
+  if (oldVideo) {
+    oldVideo.pause();
+    oldVideo.removeAttribute("src");
+    oldVideo.load();
+    if (oldVideo.parentNode) oldVideo.parentNode.removeChild(oldVideo);
+  }
   player.className = "portfolio-detail-player " + (data.coverClass || "");
   if (data.isPortrait) player.classList.add("is-portrait-video");
   if (data.videoSrc) {
