@@ -2976,7 +2976,8 @@ main {
   justify-content: center;
   gap: 0;
   overflow: visible;
-  padding: 20px 0 24px;
+  padding: 8px 0 16px;
+  margin-bottom: 16px;
 }
 
 .portfolio-carousel-wrapper {
@@ -3386,6 +3387,11 @@ body.design-hover-active::before {
   border-bottom: 1.5px solid #1a1a1a;
   padding-top: 16px;
   padding-bottom: 16px;
+  margin-bottom: 12px;
+}
+
+.portfolio-toolbar {
+  margin-bottom: 16px;
 }
 
 .portfolio-heading-cn {
