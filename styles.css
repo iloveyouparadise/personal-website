@@ -3554,7 +3554,7 @@ body.design-hover-active::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fda682;
+  background: #9fbd95;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
