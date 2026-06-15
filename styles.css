@@ -1303,7 +1303,7 @@ main {
 .portfolio-strip-media {
   position: absolute;
   inset: 0;
-  background: #f0f0f0;
+  background-color: #ede8df;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2955,6 +2955,25 @@ main {
 .section,
 .footer {
   background: var(--paper);
+  margin-top: 48px;
+  padding-top: 100px;
+  padding-bottom: 120px;
+}
+
+.footer-tags {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-tags-title {
+  text-align: center;
+  font-family: 'SourceHanSansSC-Heavy', sans-serif;
+  font-size: clamp(22px, 3.5vw, 32px);
+  margin-bottom: 16px;
+  color: var(--text);
 }
 
 .timeline,
@@ -3491,6 +3510,15 @@ body.design-hover-active::before {
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+.contact-mask--mobile {
+  display: none;
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .contact-mask { display: none; }
+  .contact-mask--mobile { display: block; }
 }
 
 #contact h2 {
