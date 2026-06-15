@@ -2858,9 +2858,24 @@ body {
 .footer h2,
 .timeline-content h3,
 .timeline-content p,
-.portfolio-detail-head h3,
+.portfolio-detail-head h3 {
+  color: var(--text);
+  font-family: "SourceHanSansSC-Heavy", sans-serif;
+  font-weight: 900;
+}
+
 .portfolio-detail-head p,
 .portfolio-detail-info p,
+.portfolio-detail-info p strong {
+  color: var(--text);
+  font-family: var(--sans-font);
+  font-weight: 400;
+}
+
+.portfolio-detail-info p strong {
+  font-weight: 700;
+}
+
 .card-block strong,
 .contact-list a {
   color: var(--text);
