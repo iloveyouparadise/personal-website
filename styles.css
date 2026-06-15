@@ -3076,7 +3076,7 @@ main {
   transform: rotate(45deg);
   width: 71px;
   height: 1px;
-  background: var(--ink-line);
+  background: #9fa384;
   z-index: 2;
   pointer-events: none;
 }
@@ -3106,8 +3106,8 @@ main {
 /* 中间聚焦卡片：描边 + 实体阴影 */
 .portfolio-strip[data-stagger-pos="0"] {
   z-index: 10;
-  border: 1px solid var(--ink-line);
-  box-shadow: 0 6px 0 2px var(--ink-line);
+  border: 1px solid #9fa384;
+  box-shadow: 0 6px 0 2px #9fa384;
 }
 
 .portfolio-scroll-button {
