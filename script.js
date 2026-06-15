@@ -317,12 +317,12 @@ function pauseDetailVideo(detail) {
 
 /* ── Portfolio detail data ── */
 var portfolioData = {
-  "school-01": { index: "01", title: "毕业设计", subtitle: "建议放你最完整的一项学校作品，作为作品集的首页项目。", coverClass: "cover-school-01", videoSrc: null, isPortrait: false, info: [{ label: "时间", value: "请补充" }, { label: "参与部分", value: "视觉概念、内容策划、拍摄或剪辑流程" }, { label: "项目介绍", value: "这里可以写背景、目标、最终呈现方式和你最想强调的亮点。" }] },
-  "school-02": { index: "02", title: "广告 / MV / 微电影", subtitle: "适合整理成一张代表你视频全流程制作能力的案例卡。", coverClass: "cover-school-02", videoSrc: null, isPortrait: false, info: [{ label: "时间", value: "请补充" }, { label: "参与部分", value: "拍摄、分镜、剪辑、节奏设计" }, { label: "项目介绍", value: "写清项目类型、合作方式、风格方向，以及你负责的核心环节。" }] },
-  "school-03": { index: "03", title: "新媒体账号分析", subtitle: "适合展示你做内容研究、账号拆解和可视化表达的能力。", coverClass: "cover-school-03", videoSrc: null, isPortrait: false, info: [{ label: "时间", value: "请补充" }, { label: "参与部分", value: "调研、结构梳理、结论输出" }, { label: "项目介绍", value: "补充研究对象、分析维度、最后得出的策略结论。" }] },
-  "school-04": { index: "04", title: "课程协作项目", subtitle: "适合用来说明你在团队合作里的职责和统筹能力。", coverClass: "cover-school-04", videoSrc: null, isPortrait: false, info: [{ label: "时间", value: "请补充" }, { label: "参与部分", value: "协作推进、物料整理、呈现把控" }, { label: "项目介绍", value: "强调你在团队中的具体贡献，而不是只写项目结果。" }] },
-  "school-05": { index: "05", title: "研究型课程作品", subtitle: "适合强调方法、调研和系统性思考。", coverClass: "cover-school-05", videoSrc: null, isPortrait: false, info: [{ label: "时间", value: "请补充" }, { label: "参与部分", value: "研究、分析、方案推导" }, { label: "项目介绍", value: "写清问题、方法、结论，以及最后如何转化成具体方案。" }] },
-  "school-06": { index: "06", title: "个人表达作品", subtitle: "适合作为这个分类里的收束项目，突出你的个人语言。", coverClass: "cover-school-06", videoSrc: null, isPortrait: false, info: [{ label: "时间", value: "请补充" }, { label: "参与部分", value: "概念、镜头、后期质感设计" }, { label: "项目介绍", value: "这里可以写你最喜欢这个作品的原因，以及希望观众看到什么。" }] },
+  "school-01": { index: "01", title: "大广赛创意广告", subtitle: "可画一分钟创意广告", coverClass: "cover-school-01", videoSrc: "./vedio/大广赛案例（可画一分钟创意广告）.mp4", isPortrait: false, info: [{ label: "时长", value: "请补充" }, { label: "参与部分", value: "请补充" }, { label: "项目介绍", value: "请补充" }] },
+  "school-02": { index: "02", title: "长视频影评", subtitle: "长视频影评案例", coverClass: "cover-school-02", videoSrc: "./vedio/长视频影评案例.mp4", isPortrait: false, info: [{ label: "时长", value: "请补充" }, { label: "参与部分", value: "请补充" }, { label: "项目介绍", value: "请补充" }] },
+  "school-03": { index: "03", title: "AE 人物混剪", subtitle: "个人兴趣剪辑", coverClass: "cover-school-03", videoSrc: "./vedio/AE个人兴趣剪辑（人物混剪）.mp4", isPortrait: false, info: [{ label: "时长", value: "请补充" }, { label: "参与部分", value: "请补充" }, { label: "项目介绍", value: "请补充" }] },
+  "school-04": { index: "04", title: "可视化数据新闻", subtitle: "AE + PR 数据新闻视频案例", coverClass: "cover-school-04", videoSrc: "./vedio/可视化数据新闻视频案例（AE+PR）.mp4", isPortrait: false, info: [{ label: "时长", value: "请补充" }, { label: "参与部分", value: "请补充" }, { label: "项目介绍", value: "请补充" }] },
+  "school-05": { index: "05", title: "野外实践拍摄", subtitle: "大学野外实践拍摄剪辑案例", coverClass: "cover-school-05", videoSrc: "./vedio/大学野外实践拍摄剪辑案例.mp4", isPortrait: false, info: [{ label: "时长", value: "请补充" }, { label: "参与部分", value: "请补充" }, { label: "项目介绍", value: "请补充" }] },
+  "school-06": { index: "06", title: "音乐歌词视频排版", subtitle: "视频排版练习案例", coverClass: "cover-school-06", videoSrc: "./vedio/视频排版练习案例-音乐歌词视频.mp4", isPortrait: false, info: [{ label: "时长", value: "请补充" }, { label: "参与部分", value: "请补充" }, { label: "项目介绍", value: "请补充" }] },
   "internship-01": { index: "01", title: "【蔚来】萤光来护驾 一日店长上班记", subtitle: "拍摄使用firefly萤火虫接上猫猫店长，送到领养日活动现场。", coverClass: "cover-internship-01", videoSrc: "./vedio/宠物救助_3剪.mp4", isPortrait: true, info: [{ label: "时长", value: "02:30" }, { label: "参与部分", value: "负责视频的拍摄和剪辑" }, { label: "项目介绍", value: "快闪竖屏短视频，firefly萤火虫杭州官方将携手杭州领养日，在猫猫躺（自在）生活节举办之时拍摄一条官方小视频，一方面是传递firefly萤火虫宠物友好等功能，一方面意在为后续用户志愿者招募提供前宣素材，进行打样" }] },
   "internship-02": { index: "02", title: "蔚来旗下品牌「萤火虫」车机系统宣传项目", subtitle: "负责通过节奏与视觉包装（AE）优化强化传播效果。", coverClass: "cover-internship-02", videoSrc: "./vedio/318小猫视频-7剪.mp4", isPortrait: true, info: [{ label: "时长", value: "00:37" }, { label: "参与部分", value: "拍摄、剪辑（包含视频包装）" }, { label: "项目介绍", value: "乐队氛围环作为萤火虫车机里的一个特色小功能，本来就与猫咪密不可分，同可爱猫咪一起宣传这一功能。" }] },
   "internship-03": { index: "03", title: "「蔚来」ET-9新车色到店宣传视频", subtitle: "分店外拍，在汽车展台内拍摄新车色。", coverClass: "cover-internship-03", videoSrc: "./vedio/3.26ET9.mp4", isPortrait: false, info: [{ label: "时长", value: "01:21" }, { label: "参与部分", value: "拍摄、剪辑" }, { label: "项目介绍", value: "围绕新车色的特点，以流畅的节奏输出新车色的细节和大体展示。" }] },
@@ -900,10 +900,10 @@ function generateVideoThumbnail(videoSource, mediaElement) {
 }
 
 async function initPortfolioStripVideoCovers() {
-  var internshipStrips = document.querySelectorAll('.portfolio-strip[data-detail-target^="internship-"]');
+  var strips = document.querySelectorAll('.portfolio-strip[data-detail-target]');
 
-  for (var i = 0; i < internshipStrips.length; i++) {
-    var strip = internshipStrips[i];
+  for (var i = 0; i < strips.length; i++) {
+    var strip = strips[i];
     var targetId = strip.dataset.detailTarget;
     var media = strip.querySelector(".portfolio-strip-media");
     if (!media) continue;
