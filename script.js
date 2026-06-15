@@ -900,7 +900,7 @@ function generateVideoThumbnail(videoSource, mediaElement) {
 }
 
 async function initPortfolioStripVideoCovers() {
-  var strips = document.querySelectorAll('.portfolio-strip[data-detail-target]');
+  var strips = document.querySelectorAll('.portfolio-strip[data-detail-target^="school-"]');
 
   for (var i = 0; i < strips.length; i++) {
     var strip = strips[i];

@@ -1426,6 +1426,30 @@ main {
   background-image: url("./myimg/洛杉矶3（音乐推荐）.png");
 }
 
+.portfolio-strip-media.cover-internship-01 {
+  background-image: url("./img/实习作品封面/宠物救助_3剪.jpeg");
+}
+
+.portfolio-strip-media.cover-internship-02 {
+  background-image: url("./img/实习作品封面/318小猫视频-7剪.png");
+}
+
+.portfolio-strip-media.cover-internship-03 {
+  background-image: url("./img/实习作品封面/ET9新车色.jpeg");
+}
+
+.portfolio-strip-media.cover-internship-04 {
+  background-image: url("./img/实习作品封面/ET6ES6上市.jpeg");
+}
+
+.portfolio-strip-media.cover-internship-05 {
+  background-image: url("./img/实习作品封面/循迹倒车-v7.jpeg");
+}
+
+.portfolio-strip-media.cover-internship-06 {
+  background-image: url("./img/实习作品封面/L80到店.jpeg");
+}
+
 .portfolio-detail {
   display: none;
   grid-template-rows: 1fr auto;
