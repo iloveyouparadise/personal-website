@@ -3050,7 +3050,7 @@ main {
   min-width: 0;
   max-width: none;
   flex: none;
-  border: none;
+  border: 1px solid #9ba9ba;
   box-shadow: none;
   border-radius: 0;
   cursor: pointer;
@@ -3076,7 +3076,7 @@ main {
   transform: rotate(45deg);
   width: 71px;
   height: 1px;
-  background: #9ba9ba;
+  background: #637891;
   z-index: 2;
   pointer-events: none;
 }
@@ -3106,8 +3106,8 @@ main {
 /* 中间聚焦卡片：描边 + 实体阴影 */
 .portfolio-strip[data-stagger-pos="0"] {
   z-index: 10;
-  border: 1px solid #9ba9ba;
-  box-shadow: 0 6px 0 2px #9ba9ba;
+  border: 1px solid #637891;
+  box-shadow: 0 6px 0 2px #637891;
 }
 
 .portfolio-scroll-button {
