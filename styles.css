@@ -3442,6 +3442,12 @@ body.design-hover-active::before {
   background-attachment: fixed;
 }
 
+@media (max-width: 767px) {
+  #experience {
+    background-attachment: scroll;
+  }
+}
+
 .exp-heading {
   white-space: normal;
   display: flex;
