@@ -3437,8 +3437,9 @@ body.design-hover-active::before {
   border-radius: 0;
   box-shadow: none;
   background-image: url('./bgex.png');
-  background-size: cover;
-  background-position: center;
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
