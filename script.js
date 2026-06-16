@@ -5,6 +5,7 @@
   var loader = document.getElementById('loader');
   var progress = 0;
   var fadeOut = false;
+  var finished = false;
 
   function step() {
     if (fadeOut) return;
@@ -18,6 +19,8 @@
   }
 
   function finish() {
+    if (finished) return;
+    finished = true;
     fadeOut = true;
     progress = 100;
     bar.style.width = '100%';
@@ -29,9 +32,13 @@
 
   step();
 
+  // 页面资源全部加载完成后关闭
   window.addEventListener('load', function() {
     setTimeout(finish, 200);
   });
+
+  // 兜底：8 秒后强制关闭，避免大视频/慢网络卡在 98%
+  setTimeout(finish, 8000);
 })();
 
 // 禁用浏览器自动滚动恢复
