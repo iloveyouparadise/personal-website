@@ -1566,7 +1566,8 @@ main {
 .portfolio-detail-head h3 {
   margin: 0;
   font-size: var(--h2-size);
-  font-weight: 700;
+  font-family: "SourceHanSansSC-Heavy", sans-serif;
+  font-weight: 900;
 }
 
 .portfolio-detail-head p {
@@ -2868,7 +2869,8 @@ body {
 .timeline-content p,
 .portfolio-detail-head h3 {
   color: var(--text);
-  font-weight: 700;
+  font-family: "SourceHanSansSC-Heavy", sans-serif;
+  font-weight: 900;
 }
 
 .portfolio-detail-head p,
