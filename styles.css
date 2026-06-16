@@ -1458,6 +1458,10 @@ main {
   background-image: url("./img/实习作品封面/L80到店.jpeg");
 }
 
+.portfolio-strip-media.cover-internship-07 {
+  background-image: url("./img/实习作品封面/L80交付活动.jpeg");
+}
+
 .portfolio-detail {
   display: none;
   grid-template-rows: 1fr auto;
