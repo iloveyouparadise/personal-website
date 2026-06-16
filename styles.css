@@ -3157,6 +3157,113 @@ main {
   color: var(--paper);
 }
 
+/* ── 关于我板块 ── */
+
+.about-section {
+  background: var(--paper);
+  border: none;
+  padding: 0;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: end;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 40px 28px;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.about-text-paras {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about-heading {
+  font-family: "SourceHanSansSC-Heavy", sans-serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+  margin: 0;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid #1a1a1a;
+  color: var(--text);
+}
+
+.about-text p {
+  font-family: "LorchinSansP0", var(--sans-font);
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+  margin: 0;
+  color: var(--text);
+}
+
+.about-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── TiltedCard 效果 ── */
+.tilt-container {
+  perspective: 1000px;
+  position: relative;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+}
+
+.tilt-img {
+  display: block;
+  width: 300px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border: 1px solid var(--ink-line);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  pointer-events: none;
+}
+
+.tilt-caption {
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-radius: 4px;
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+  padding: 4px 10px;
+  font-family: var(--sans-font);
+  font-size: 12px;
+  color: var(--text);
+  opacity: 0;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 28px 24px 32px;
+  }
+  .about-visual {
+    order: -1;
+  }
+  .tilt-img {
+    width: 240px;
+  }
+}
+
 /* ── TrueFocus filter buttons ── */
 .focus-container {
   position: relative;
@@ -3430,10 +3537,7 @@ body.design-hover-active::before {
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 16px 12px !important;
 }
 
 .projects-section {
