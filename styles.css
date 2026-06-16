@@ -2869,6 +2869,8 @@ body {
 .portfolio-detail-head h3 {
   color: var(--text);
   font-weight: 700;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
 .portfolio-detail-head p,
