@@ -3166,7 +3166,7 @@ main {
   background: var(--paper);
   clip-path: polygon(0% 0%, 0% 100%, 0 100%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%, 100% 100%, 100% 0%);
   z-index: 5;
-  opacity: 0;
+  display: none;
 }
 
 .arrow {
@@ -3175,6 +3175,7 @@ main {
   left: 50%;
   z-index: 6;
   pointer-events: none;
+  display: none;
   animation: arrowFloat 1s ease-in-out infinite alternate both;
 }
 
