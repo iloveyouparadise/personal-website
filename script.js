@@ -317,7 +317,7 @@ function pauseDetailVideo(detail) {
 
 /* ── Portfolio detail data ── */
 var portfolioData = {
-  "school-01": { index: "01", title: "大广赛创意广告大广赛一分钟创意广告参赛作品（可画）", subtitle: "可画一分钟创意广告", coverClass: "cover-school-01", videoSrc: "./vedio/大广赛案例（可画一分钟创意广告）.mp4", isPortrait: false, info: [{ label: "时长", value: "1:00" }, { label: "参与部分", value: "布光+拍摄+剪辑+动效制作" }, { label: "项目介绍", value: "根据甲方（可画）提供的卖点，独立进行拍摄和剪辑，通过实拍和动效搭配输出创意视频" }] },
+  "school-01": { index: "01", title: "大广赛一分钟创意广告参赛作品（可画）", subtitle: "可画一分钟创意广告", coverClass: "cover-school-01", videoSrc: "./vedio/大广赛案例（可画一分钟创意广告）.mp4", isPortrait: false, info: [{ label: "时长", value: "1:00" }, { label: "参与部分", value: "布光+拍摄+剪辑+动效制作" }, { label: "项目介绍", value: "根据甲方（可画）提供的卖点，独立进行拍摄和剪辑，通过实拍和动效搭配输出创意视频" }] },
   "school-02": { index: "02", title: "长视频影评", subtitle: "长视频影评案例", coverClass: "cover-school-02", videoSrc: "./vedio/长视频影评案例.mp4", isPortrait: false, info: [{ label: "时长", value: "10:17" }, { label: "参与部分", value: "文案+配音+剪辑" }, { label: "项目介绍", value: "根据自选论题“时间在诺兰电影里的多重表达”来输出观点，并配合文案输出匹配的电影画面" }] },
   "school-03": { index: "03", title: "AE 人物混剪", subtitle: "人物混剪视频案例（Ae动效+时间重映射变速）", coverClass: "cover-school-03", videoSrc: "./vedio/AE个人兴趣剪辑（人物混剪）.mp4", isPortrait: false, info: [{ label: "时长", value: "00:16" }, { label: "参与部分", value: "纯后期制作" }, { label: "项目介绍", value: "根据音乐剪辑人物的名场面，并做变速效果" }] },
   "school-04": { index: "04", title: "“谢广军女儿开盒”事件可视化数据新闻", subtitle: "Pr剪辑+Ae数据可视化+动画制作", coverClass: "cover-school-04", videoSrc: "./vedio/可视化数据新闻视频案例（AE+PR）.mp4", isPortrait: false, info: [{ label: "时长", value: "07:23" }, { label: "参与部分", value: "剪辑+动效制作" }, { label: "项目介绍", value: "根据“开盒”这一热点新闻事件，透过数据可视化的形式呈现开盒这一行为的表里" }] },
