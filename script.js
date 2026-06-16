@@ -857,6 +857,19 @@ window.addEventListener('orientationchange', () => {
 (function() {
   var mm = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (mm.matches) return;
+  var keyhole = document.querySelector('.keyhole');
+  var arrow = document.querySelector('.arrow');
+  if (!keyhole || !arrow) return;
+
+  ScrollTrigger.create({
+    trigger: ".about-section",
+    start: "top 80%",
+    end: "bottom 20%",
+    onEnter: function() { keyhole.style.opacity = '1'; arrow.style.opacity = '1'; },
+    onLeave: function() { keyhole.style.opacity = '0'; arrow.style.opacity = '0'; },
+    onEnterBack: function() { keyhole.style.opacity = '1'; arrow.style.opacity = '1'; },
+    onLeaveBack: function() { keyhole.style.opacity = '0'; arrow.style.opacity = '0'; }
+  });
 
   gsap.fromTo(".keyhole", {
     clipPath: "polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%)"
