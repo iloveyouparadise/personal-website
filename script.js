@@ -853,51 +853,6 @@ window.addEventListener('orientationchange', () => {
   }, 500);
 });
 
-/* ── Keyhole reveal animation (仅关于我板块) ── */
-(function() {
-  var mm = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (mm.matches) return;
-  var keyhole = document.querySelector('.keyhole');
-  var arrow = document.querySelector('.arrow');
-  if (!keyhole || !arrow) return;
-
-  // 进出关于我板块时切换显示
-  ScrollTrigger.create({
-    trigger: ".about-section",
-    start: "top bottom",
-    end: "bottom top",
-    onEnter: function() { gsap.set([keyhole, arrow], { display: "block" }); },
-    onLeave: function() { gsap.set([keyhole, arrow], { display: "none" }); },
-    onEnterBack: function() { gsap.set([keyhole, arrow], { display: "block" }); },
-    onLeaveBack: function() { gsap.set([keyhole, arrow], { display: "none" }); }
-  });
-
-  // keyhole 裁剪展开
-  gsap.fromTo(".keyhole", {
-    clipPath: "polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%)"
-  }, {
-    clipPath: "polygon(0% 0%, 0% 100%, 0 100%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%, 100% 100%, 100% 0%)",
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".about-section",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1
-    }
-  });
-
-  // 箭头淡出
-  gsap.to(".arrow", {
-    opacity: 0,
-    scrollTrigger: {
-      trigger: ".about-section",
-      start: "top top",
-      end: "+=200",
-      scrub: 1
-    }
-  });
-})();
-
 function initExpAnimation() {
   ScrollTrigger.getAll()
     .filter(t => t.vars.id && t.vars.id.startsWith('exp-'))
