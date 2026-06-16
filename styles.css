@@ -1566,8 +1566,7 @@ main {
 .portfolio-detail-head h3 {
   margin: 0;
   font-size: var(--h2-size);
-  font-family: "ZhiyiSans-Bold", "ZhiyiSans", sans-serif;
-  font-weight: normal;
+  font-weight: 700;
 }
 
 .portfolio-detail-head p {
@@ -2869,8 +2868,7 @@ body {
 .timeline-content p,
 .portfolio-detail-head h3 {
   color: var(--text);
-  font-family: "ZhiyiSans-Bold", "ZhiyiSans", sans-serif;
-  font-weight: normal;
+  font-weight: 700;
 }
 
 .portfolio-detail-head p,
