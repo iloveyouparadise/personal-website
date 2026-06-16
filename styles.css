@@ -3178,7 +3178,7 @@ main {
 .about-text {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 46px;
 }
 
 .about-text-paras {
@@ -3188,13 +3188,11 @@ main {
 }
 
 .about-heading {
-  font-family: "SourceHanSansSC-Heavy", sans-serif;
+  font-family: "今年也要加油鸭", sans-serif;
   font-size: clamp(40px, 6vw, 80px);
-  font-weight: 900;
+  font-weight: 400;
   line-height: 1;
   margin: 0;
-  padding-bottom: 6px;
-  border-bottom: 1.5px solid #1a1a1a;
   color: var(--text);
 }
 
