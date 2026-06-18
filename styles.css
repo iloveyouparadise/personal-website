@@ -3446,6 +3446,8 @@ body.design-hover-active::before {
 @media (max-width: 767px) {
   #experience {
     background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
   }
 }
 
